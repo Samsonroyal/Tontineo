@@ -1,7 +1,7 @@
 # Tontineo
 
 
-Digitizing the informal tontine space
+Digitizing the record keeping in Tontines
 
 ## Instructions to working with Repo
 
