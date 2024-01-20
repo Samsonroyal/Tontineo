@@ -1,9 +1,7 @@
-# Tontineo
+![Tontineo Logo](https://github.com/Samsonroyal/Tontineo/assets/26835888/e1f80b26-64f6-4a2b-8421-9db6925f8bb8)
+# Digitizing record keeping in Tontines, one group at a time
 
-
-Digitizing the record keeping in Tontines
-
-## Instructions to working with Repo
+## Instructions to start working with Repo
 
 
 - Clone the repository
