@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tontineo_app/tontine_group_creation.dart';
+
+import 'package:tontineo_mobile_app/tontine_group_creation.dart';
 
 
 
