@@ -35,23 +35,13 @@ class _LoginPageState extends State<LoginPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           const Text(
-            "CREATE AN ACCOUNT",
+            "WELCOME BACK",
             style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 16.0),
-          Text("Create and Manage your Tontine with ease"),
+          Text("Enter your details to continue"),
 
-          SizedBox(height: 20.0),
-          TextFormField(
-            decoration: InputDecoration(
-              border: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(5.0))),
-              prefixIcon: Icon(Icons.flag, color: Colors.grey[100]),
-              hintText: "Email*",
-              filled: true,
-              fillColor: Colors.white,
-            ),
-          ),
+          SizedBox(height: 60.0),
           const SizedBox(height: 20.0),
           TextFormField(
             style: TextStyle(color: Colors.green),
@@ -105,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
             ],
           ),
 
-// Register button
+// Login Button
           SizedBox(height: 16.0),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -115,7 +105,12 @@ class _LoginPageState extends State<LoginPage> {
                   // Implement registration functionality
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.green,
+                primary: Colors.green,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6.0),
+                ),
+                padding: EdgeInsets.all(16.0),
+                minimumSize: Size.fromHeight(60.0),
                 ),
                 child: const Text(
                   "Login",
