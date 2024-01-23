@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tontineo_mobile_app/payment_method_Screen.dart';
 import 'package:tontineo_mobile_app/tontine_contribution_form.dart';
+import 'package:tontineo_mobile_app/tontine_home_page.dart';
 
 
 class TontineoApp extends StatelessWidget {
