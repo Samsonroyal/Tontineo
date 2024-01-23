@@ -1,103 +1,100 @@
 import 'package:flutter/material.dart';
 
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('tontine contribution form'),
+          title: Text('Tontine contribution form'),
         ),
-        body: ContainerWithColumns(),
+        body: MyForm(), // Use the custom form class
       ),
     );
   }
 }
 
-class ContainerWithColumns extends StatelessWidget {
+class MyForm extends StatefulWidget {
+  @override
+  _MyFormState createState() => _MyFormState();
+}
+
+class _MyFormState extends State<MyForm> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding: EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'contribution form ',
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
+      child: Form(
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Input Field 1
+            TextFormField(
+              decoration: InputDecoration(labelText: 'Name of contributor'),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return ' name required';
+                }
+                return null;
+              },
             ),
-          ),
-          SizedBox(height: 16.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              // Column 1
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Amount received'),
-                  // Add your widgets for column 1 here
-                ],
+            // Input Field 2
+            TextFormField(
+              decoration: InputDecoration(labelText: 'Amount contributed'),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'amount required';
+                }
+                return null;
+              },
+            ),
+            TextFormField(
+              decoration: InputDecoration(labelText: 'Date of contribution'),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return ' date';
+                }
+                return null;
+              },
+            ),
+            // Input Field 2
+            TextFormField(
+              decoration: InputDecoration(labelText: 'Siginature'),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'name';
+                }
+                return null;
+              },
+            ),
+            // Add more input fields as needed
+
+            // Elevated Button
+            SizedBox(height: 16.0),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green
               ),
-              // Column 2 (Input)
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Date received'),
-                  // Input field for column 2
-                  TextField(
-                    decoration: InputDecoration(
-                      hintText: 'select date',
+              onPressed: () {
+                // Validate the form
+                if (_formKey.currentState!.validate()) {
+                  // Process the form data
+                  // You can add your logic here
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Form submitted successfully!'),
                     ),
-                  ),
-                ],
-              ),
-              // Column 3
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Contribution recieved from'),
-                  // Add your widgets for column 3 here
-                ],
-              ),
-              // Column 4 (Input)
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('payment method'),
-                  // Input field for column 4
-                  TextField(
-                    decoration: InputDecoration(
-                      hintText: 'mobile money',
-                    ),
-                  ),
-                ],
-              ),
-              // Column 5
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('recipient signature'),
-                  // Add your widgets for column 5 here
-                ],
-              ),
-            Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('record contribution'),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Handle button click
-                    },
-                    child: Text('record Contribution'),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
+                  );
+                }
+              },
+              child: Text('Record contribution'),
+            ),
+          ],
+        ),
       ),
     );
   }

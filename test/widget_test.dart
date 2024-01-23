@@ -7,8 +7,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:tontineo_mobile_app/main.dart';
 import 'package:tontineo_mobile_app/tontineo_app.dart';
 
 void main() {
