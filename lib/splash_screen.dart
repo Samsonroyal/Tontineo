@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // Wait 3 seconds, then navigate to the home screen.
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushNamed(context, '/welcome');
-      print('Navigating to Welcome Screen...');
+      print('Navigating to Home Screen...');
 
     });
   }
