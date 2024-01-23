@@ -12,10 +12,9 @@ class TontineHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(
-              "lib/assets/images/avatar.png", // Replace with the actual image asset path
-              height: 40.0,
-              width: 40.0,
+            CircleAvatar(
+              radius: 20.0,
+              backgroundImage: AssetImage("lib/assets/images/avatar.png"), 
             ),
             Spacer(),
             SizedBox(width: 8.0),
@@ -79,14 +78,13 @@ class TontineHomePage extends StatelessWidget {
             ),
             SizedBox(height: 150.0),
 
-            // Column with image and text
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
                   Image.asset(
-                    "lib/assets/images/tontine_logo.png", // Replace with the actual image asset path
-                    height: 200.0,
+                    "lib/assets/images/group_image.png", 
+                    height: 180.0,
                     width: double.infinity,
                     fit: BoxFit.contain,
                   ),
@@ -109,7 +107,7 @@ class TontineHomePage extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.paypal),
-            label: 'CONTRIBUTIONs',
+            label: 'CONTRIBUTIONS',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
@@ -118,7 +116,7 @@ class TontineHomePage extends StatelessWidget {
         ],
         type: BottomNavigationBarType.fixed,
       selectedItemColor: Colors.green,
-      unselectedItemColor: Colors.black,
+      unselectedItemColor: Colors.grey,
       showSelectedLabels: true,
       showUnselectedLabels: true,
     ),
