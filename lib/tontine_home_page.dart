@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
 
-class TontineGroupCreationPage extends StatelessWidget {
-  const TontineGroupCreationPage({super.key});
+class TontineHomePage extends StatelessWidget {
+  const TontineHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(248, 243, 243, 1),
+      backgroundColor: Color.fromRGBO(248, 243, 243, 1),
       appBar: AppBar(
-        title: Row(
+        title: const Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(
-              "assets/images/tontine_logo.png", // Replace with the actual image asset path
-              height: 40.0,
-              width: 40.0,
+            CircleAvatar(
+              radius: 20.0,
+              backgroundImage: AssetImage("lib/assets/images/avatar.png"), 
             ),
-            const Spacer(),
-            const SizedBox(width: 8.0),
-            const Text(
+            Spacer(),
+            SizedBox(width: 8.0),
+            Text(
               "Hi Kossi",
               style: TextStyle(fontSize: 20.0),
             ),
-            const Spacer(),
-            const Icon(Icons.notifications, color: Colors.green,),
+            Spacer(),
+            Icon(Icons.notifications, color: Colors.green,),
           ],
         ),
       ),
@@ -35,23 +34,17 @@ class TontineGroupCreationPage extends StatelessWidget {
           children: [
             // Column like a pop-up
             Container(
-              padding: const EdgeInsets.all(16.0),
+              width: 315.458984375,
+              height: 156.80709838867188,
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(11.06873607635498),
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(10.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 3,
-                    blurRadius: 5,
-                    offset: const Offset(0, 3),
-                  ),
-                ],
               ),
+              padding: EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     "You have no Tontine Group",
                     style: TextStyle(
                       fontSize: 18.0,
@@ -59,16 +52,21 @@ class TontineGroupCreationPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 16.0,
+                    height: 40.0,
                   ),
                   ElevatedButton(
                     onPressed: () {
                       // Add your button action here
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green, // Set the background color to green
+                      primary: Color(0xff0da62f),
+                      padding: EdgeInsets.all(16.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6.0),
+                      ),
+                      minimumSize: Size(164, 46),
                     ),
-                    child: const Text(
+                    child: Text(
                       "Create Tontine",
                       style: TextStyle(color: Colors.white),
                     ),
@@ -76,21 +74,20 @@ class TontineGroupCreationPage extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 150.0),
+            SizedBox(height: 150.0),
 
-            // Column with image and text
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
                   Image.asset(
-                    "assets/images/tontine_logo.png", // Replace with the actual image asset path
-                    height: 200.0,
+                    "lib/assets/images/group_image.png", 
+                    height: 180.0,
                     width: double.infinity,
                     fit: BoxFit.contain,
                   ),
-                  const SizedBox(height: 10.0),
-                  const Text(
+                  SizedBox(height: 10.0),
+                  Text(
                     "You have not created a group yet",
                     style: TextStyle(fontSize: 16.0),
                   ),
@@ -100,15 +97,16 @@ class TontineGroupCreationPage extends StatelessWidget {
           ],
         ),
       ),
+
       bottomNavigationBar: BottomNavigationBar(
-        items: const [
+        items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'DASHBOARD',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.paypal),
-            label: 'CONTRIBUTIONs',
+            label: 'CONTRIBUTIONS',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
@@ -116,11 +114,25 @@ class TontineGroupCreationPage extends StatelessWidget {
           ),
         ],
         type: BottomNavigationBarType.fixed,
-      selectedItemColor: Colors.green,
-      unselectedItemColor: Colors.black,
-      showSelectedLabels: true,
-      showUnselectedLabels: true,
-    ),
+        selectedItemColor: Colors.green,
+        unselectedItemColor: Colors.grey,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              Navigator.popAndPushNamed(context, '/home');
+              break;
+            case 1:
+              Navigator.popAndPushNamed(context, '/contributions');
+              break;
+            case 2:
+              Navigator.popAndPushNamed(context, '/settings');
+              break;
+          }
+        },
+      ),
+
     );
   }
 }
