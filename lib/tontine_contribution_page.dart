@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
 
 class TontineContributions extends StatelessWidget {
+  const TontineContributions({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: CircleAvatar(
+        leading: const CircleAvatar(
           backgroundImage: AssetImage('assets/avatar.png'),
         ),
-        title: Text('Username'),
+        title: const Text('Username'),
         actions: [
           IconButton(
-            icon: Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications),
             onPressed: () {
               // Add notification icon onPressed logic here
             },
           ),
         ],
       ),
-      body: Card(
+      body: const Card(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -57,30 +59,30 @@ class TontineContributions extends StatelessWidget {
               onPressed: () {
                 // Add first floating action button onPressed logic here
               },
-              child: Text(
-                'Button 1',
-                style: TextStyle(color: Colors.white),
-              ),
               backgroundColor: Colors.green,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(6),
               ),
+              child: const Text(
+                'Button 1',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: FloatingActionButton(
               onPressed: () {
                 // Add second floating action button onPressed logic here
               },
-              child: Text(
-                'Button 2',
-                style: TextStyle(color: Colors.white),
-              ),
               backgroundColor: Colors.green,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(6),
+              ),
+              child: const Text(
+                'Button 2',
+                style: TextStyle(color: Colors.white),
               ),
             ),
           ),

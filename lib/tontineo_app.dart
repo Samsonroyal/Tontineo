@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tontineo_mobile_app/login_page.dart';
 import 'package:tontineo_mobile_app/splash_screen.dart';
-import 'package:tontineo_mobile_app/tontine_group_creation.dart';
-import 'package:tontineo_mobile_app/tontineo_home_page.dart';
+import 'package:tontineo_mobile_app/tontine_home_page.dart';
 import 'package:tontineo_mobile_app/tontineo_signup_page.dart';
 
 
@@ -24,12 +23,15 @@ class TontineoApp extends StatelessWidget {
       initialRoute: '/splash',
       routes: <String, WidgetBuilder> {
         '/splash': (context) => const SplashScreen(),
-        '/welcome': (context) => SignUpPage(),
-        '/login': (context) => LoginPage(),
-        '/home': (context) => TontineoHomePage(),
+        '/welcome': (context) => const SignUpPage(),
+        '/login': (context) => const LoginPage(),
+        '/home': (context) => const TontineHomePage(),
 
 
       },
+
+      home: const TontineHomePage(),
+
     );
   }
 }

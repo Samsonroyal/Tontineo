@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatelessWidget {
+  const SettingsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Settings',
           style: TextStyle(color: Colors.white),
         ),
@@ -14,7 +16,7 @@ class SettingsPage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          Card(
+          const Card(
             child: ListTile(
               title: Text('Edit Profile'),
               subtitle: Column(
@@ -32,7 +34,7 @@ class SettingsPage extends StatelessWidget {
               ),
             ),
           ),
-          Card(
+          const Card(
             child: ListTile(
               title: Text('Security'),
               subtitle: Column(
@@ -47,7 +49,7 @@ class SettingsPage extends StatelessWidget {
               ),
             ),
           ),
-          Card(
+          const Card(
             child: ListTile(
               title: Text('Help'),
               subtitle: Column(
@@ -65,11 +67,11 @@ class SettingsPage extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 16), // Add a SizedBox with height 16
+          const SizedBox(height: 16), // Add a SizedBox with height 16
           Card(
             child: ListTile(
-              leading: Icon(Icons.exit_to_app), // Add a leave/exit icon
-              title: Text('Logout'),
+              leading: const Icon(Icons.exit_to_app), // Add a leave/exit icon
+              title: const Text('Logout'),
               onTap: () {
                 Navigator.pushNamed(context, '/login'); // Redirect to "/login" route when clicked
               },

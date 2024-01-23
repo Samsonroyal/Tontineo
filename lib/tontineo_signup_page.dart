@@ -13,7 +13,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Row(
+        title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
@@ -41,10 +41,10 @@ class _SignUpPageState extends State<SignUpPage> {
               "CREATE AN ACCOUNT",
               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 16.0),
-            Text("Create and Manage your Tontine with ease"),
+            const SizedBox(height: 16.0),
+            const Text("Create and Manage your Tontine with ease"),
 
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             TextFormField(
               decoration: InputDecoration(
                 border: const OutlineInputBorder(
@@ -58,7 +58,7 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
             const SizedBox(height: 20.0),
             TextFormField(
-              style: TextStyle(color: Colors.green),
+              style: const TextStyle(color: Colors.green),
               decoration: InputDecoration(
                 border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
@@ -83,7 +83,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 filled: true,
                 fillColor: Colors.white,
                 suffixIcon: IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.visibility,
                     color: Colors.grey,
                   ),
@@ -95,7 +95,7 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
 
             // Text and clickable text row with checkbox
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -105,13 +105,13 @@ class _SignUpPageState extends State<SignUpPage> {
                     // Implement the logic to handle checkbox state changes
                   },
                 ),
-                Text("I agree with the"),
-                SizedBox(width: 4.0),
+                const Text("I agree with the"),
+                const SizedBox(width: 4.0),
                 GestureDetector(
                   onTap: () {
                     // Implement action for clickable text
                   },
-                  child: Text(
+                  child: const Text(
                     "Terms and Conditions",
                     style: TextStyle(color: Colors.green),
                   ),
@@ -120,36 +120,36 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
 
             // Register button
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
                 // Implement registration functionality
               },
 
               style: ElevatedButton.styleFrom(
-                primary: Colors.green,
+                backgroundColor: Colors.green,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(6.0),
                 ),
-                padding: EdgeInsets.all(16.0),
-                minimumSize: Size.fromHeight(80.0),
+                padding: const EdgeInsets.all(16.0),
+                minimumSize: const Size.fromHeight(80.0),
               ),
               child: const Text(
                 "Register",
                 style: TextStyle(color: Colors.white),
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Have an account"),
-                SizedBox(width: 4.0),
+                const Text("Have an account"),
+                const SizedBox(width: 4.0),
                 GestureDetector(
                   onTap: () {
                     // Implement action for clickable text
                   },
-                  child: Text(
+                  child: const Text(
                     "Login",
                     style: TextStyle(color: Colors.green),
                   ),

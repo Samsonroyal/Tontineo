@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
+  @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
@@ -12,7 +13,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Row(
+        title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
@@ -38,13 +39,13 @@ class _LoginPageState extends State<LoginPage> {
             "WELCOME BACK",
             style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: 16.0),
-          Text("Enter your details to continue"),
+          const SizedBox(height: 16.0),
+          const Text("Enter your details to continue"),
 
-          SizedBox(height: 60.0),
+          const SizedBox(height: 60.0),
           const SizedBox(height: 20.0),
           TextFormField(
-            style: TextStyle(color: Colors.green),
+            style: const TextStyle(color: Colors.green),
             decoration: InputDecoration(
               border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(5.0))),
@@ -68,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
               filled: true,
               fillColor: Colors.white,
               suffixIcon: IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.visibility,
                   color: Colors.grey,
                 ),
@@ -81,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
 // ...
 
 // Text and clickable text row with checkbox
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -91,12 +92,12 @@ class _LoginPageState extends State<LoginPage> {
                   // Implement the logic to handle checkbox state changes
                 },
               ),
-              Text("Keep me logged in"),
+              const Text("Keep me logged in"),
             ],
           ),
 
 // Login Button
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -105,12 +106,12 @@ class _LoginPageState extends State<LoginPage> {
                   // Implement registration functionality
                 },
                 style: ElevatedButton.styleFrom(
-                primary: Colors.green,
+                backgroundColor: Colors.green,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(6.0),
                 ),
-                padding: EdgeInsets.all(16.0),
-                minimumSize: Size.fromHeight(60.0),
+                padding: const EdgeInsets.all(16.0),
+                minimumSize: const Size.fromHeight(60.0),
                 ),
                 child: const Text(
                   "Login",
@@ -120,17 +121,17 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ],
           ),
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Don't an account"),
-              SizedBox(width: 4.0),
+              const Text("Don't an account"),
+              const SizedBox(width: 4.0),
               GestureDetector(
                 onTap: () {
                   // Implement action for clickable text
                 },
-                child: Text(
+                child: const Text(
                   "Register",
                   style: TextStyle(color: Colors.green),
                 ),
