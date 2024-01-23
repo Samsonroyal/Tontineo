@@ -125,13 +125,14 @@ class _SignUpPageState extends State<SignUpPage> {
               onPressed: () {
                 // Implement registration functionality
               },
+
               style: ElevatedButton.styleFrom(
                 primary: Colors.green,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(6.0),
                 ),
                 padding: EdgeInsets.all(16.0),
-                minimumSize: Size.fromHeight(60.0),
+                minimumSize: Size.fromHeight(80.0),
               ),
               child: const Text(
                 "Register",
