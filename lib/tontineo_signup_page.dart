@@ -50,7 +50,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
-                prefixIcon: Icon(Icons.flag, color: Colors.grey[100]),
+                prefixIcon: Icon(Icons.email, color: Colors.grey[100]),
                 hintText: "Email*",
                 filled: true,
                 fillColor: Colors.white,
@@ -63,7 +63,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
-                prefixIcon: Icon(Icons.flag, color: Colors.grey[100]),
+                prefixIcon: Icon(Icons.phone, color: Colors.grey[100]),
                 hintText: "Phone Number*",
                 filled: true,
                 fillColor: Colors.white,
