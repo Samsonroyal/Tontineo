@@ -8,7 +8,7 @@ class TontineHomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color.fromRGBO(248, 243, 243, 1),
       appBar: AppBar(
-        title: Row(
+        title: const Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -34,19 +34,13 @@ class TontineHomePage extends StatelessWidget {
           children: [
             // Column like a pop-up
             Container(
-              padding: EdgeInsets.all(16.0),
+              width: 315.458984375,
+              height: 156.80709838867188,
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(11.06873607635498),
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(10.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 3,
-                    blurRadius: 5,
-                    offset: Offset(0, 3),
-                  ),
-                ],
               ),
+              padding: EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -58,15 +52,19 @@ class TontineHomePage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 16.0,
+                    height: 40.0,
                   ),
                   ElevatedButton(
                     onPressed: () {
                       // Add your button action here
                     },
                     style: ElevatedButton.styleFrom(
-                      primary:
-                          Colors.green, // Set the background color to green
+                      primary: Color(0xff0da62f),
+                      padding: EdgeInsets.all(16.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6.0),
+                      ),
+                      minimumSize: Size(164, 46),
                     ),
                     child: Text(
                       "Create Tontine",
@@ -99,6 +97,7 @@ class TontineHomePage extends StatelessWidget {
           ],
         ),
       ),
+
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
@@ -115,11 +114,25 @@ class TontineHomePage extends StatelessWidget {
           ),
         ],
         type: BottomNavigationBarType.fixed,
-      selectedItemColor: Colors.green,
-      unselectedItemColor: Colors.grey,
-      showSelectedLabels: true,
-      showUnselectedLabels: true,
-    ),
+        selectedItemColor: Colors.green,
+        unselectedItemColor: Colors.grey,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              Navigator.popAndPushNamed(context, '/home');
+              break;
+            case 1:
+              Navigator.popAndPushNamed(context, '/contributions');
+              break;
+            case 2:
+              Navigator.popAndPushNamed(context, '/settings');
+              break;
+          }
+        },
+      ),
+
     );
   }
 }
