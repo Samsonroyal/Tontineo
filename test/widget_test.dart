@@ -9,11 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tontineo_mobile_app/tontineo_app.dart';
 
-<<<<<<< HEAD
-import 'package:tontineo_mobile_app/tontineo_app.dart';
-=======
->>>>>>> 6c6e26d9dc0913fe2e53d83c984e77643e5308e4
-
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
