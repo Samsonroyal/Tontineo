@@ -13,7 +13,7 @@ class TontineGroupCreationPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
-              "assets/images/tontine_logo.png", // Replace with the actual image asset path
+              "assets/profile.png", // Replace with the actual image asset path
               height: 40.0,
               width: 40.0,
             ),
