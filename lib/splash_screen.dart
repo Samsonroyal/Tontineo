@@ -28,22 +28,15 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           ClipOval(
             child: Container(
-              color: Colors.green, // Set the color to green
+              color: const Color.fromARGB(80, 255, 255, 255), // Set the color to green
               child: Image.asset(
                 'lib/assets/images/tontineo.png', // Replace with the path to your logo image
-                width: 60.0,
-                height: 60.0,
+                width: 200.0,
+                height: 200.0,
               ),
             ),
           ),
-          const Text(
-            'Tontineo',
-            style: TextStyle(
-              fontSize: 24.0,
-              decoration: TextDecoration.none,
-              color: Colors.green,
-            ),
-          )
+          
         ],
       ),
     );
