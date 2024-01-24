@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tontineo_mobile_app/ui/home/home/invite_members_page.dart';
 import 'package:tontineo_mobile_app/ui/home/home/tontine_contribution_page.dart';
 import 'package:tontineo_mobile_app/auth/login/tontine_login_page.dart';
 import 'package:tontineo_mobile_app/ui/splash/splash_screen.dart';
@@ -18,13 +19,14 @@ class TontineoApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      initialRoute: '/splash',
+      initialRoute: '/invite_members',
       routes: <String, WidgetBuilder>{
         '/splash': (context) => const SplashScreen(),
         '/welcome': (context) => const SignUpPage(),
         '/login': (context) => const LoginPage(),
         '/home': (context) => const TontineHomePage(),
         '/settings': (context) => const SettingsPage(),
+        '/invite_members': (context) => InviteMembersPage(),
         '/contributions': (context) => const TontineContributions(),
       },
       home: const TontineHomePage(),
