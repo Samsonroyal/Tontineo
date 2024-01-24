@@ -56,7 +56,7 @@
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
     "flutter.view.tool.window.visible": "true",
-    "git-widget-placeholder": "samson",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Repos/Tontineo-monorepo/tontineo_mobile_app",
     "show.migrate.to.gradle.popup": "false"
