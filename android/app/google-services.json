@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "661792549133",
+    "project_id": "tontineo",
+    "storage_bucket": "tontineo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661792549133:android:b61371ed052b30ea676844",
+        "android_client_info": {
+          "package_name": "com.example.tontineo_mobile_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "661792549133-vt5p36jkcf77t8b7cnek4m5h315ocd5o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBH6kS2ftSED4fjH6FuctOFwcri-x33v6k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "661792549133-vt5p36jkcf77t8b7cnek4m5h315ocd5o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
