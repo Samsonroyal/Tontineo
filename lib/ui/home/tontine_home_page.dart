@@ -14,7 +14,7 @@ class TontineHomePage extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 20.0,
-              backgroundImage: AssetImage("lib/assets/images/avatar.png"), 
+              backgroundImage: AssetImage("lib/assets/images/avatar.png"),
             ),
             Spacer(),
             SizedBox(width: 8.0),
@@ -23,7 +23,10 @@ class TontineHomePage extends StatelessWidget {
               style: TextStyle(fontSize: 20.0),
             ),
             Spacer(),
-            Icon(Icons.notifications, color: Colors.green,),
+            Icon(
+              Icons.notifications,
+              color: Colors.green,
+            ),
           ],
         ),
       ),
@@ -81,7 +84,7 @@ class TontineHomePage extends StatelessWidget {
               child: Column(
                 children: [
                   Image.asset(
-                    "lib/assets/images/group_image.png", 
+                    "lib/assets/images/group_image.png",
                     height: 180.0,
                     width: double.infinity,
                     fit: BoxFit.contain,
@@ -97,7 +100,6 @@ class TontineHomePage extends StatelessWidget {
           ],
         ),
       ),
-
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
@@ -132,7 +134,6 @@ class TontineHomePage extends StatelessWidget {
           }
         },
       ),
-
     );
   }
 }
