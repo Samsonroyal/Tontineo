@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 
 class TontineGroupCreation extends StatelessWidget {
+  const TontineGroupCreation({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -9,12 +11,14 @@ class TontineGroupCreation extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: TontineGroupCreator(),
+      home: const TontineGroupCreator(),
     );
   }
 }
 
 class TontineGroupCreator extends StatelessWidget {
+  const TontineGroupCreator({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,9 +26,9 @@ class TontineGroupCreator extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Image.asset('assets/images/group_image.png', width: 50, height: 50), // Replace with your image
-            Text('Hello Kossi, \n You have not create a Tontine yet!'),
-            Icon(Icons.group),
+            Image.asset('lib/assets/images/tontineo_logo.png', width: 50, height: 50), 
+            const Text('Hello Kossi, \n You have not create a Tontine yet!'),
+            const Icon(Icons.group),
           ],
         ),
       ),
@@ -35,37 +39,36 @@ class TontineGroupCreator extends StatelessWidget {
           children: <Widget>[
             // Column with TextFormFields
             TextFormField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Group Name',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextFormField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Phone Number',
                 border: OutlineInputBorder(),
               ),
               keyboardType: TextInputType.phone,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             TextFormField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Set Rules',
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             // Create Tontine Group button
             ElevatedButton(
               onPressed: () {
                 // Add your onPressed code here
               },
               style: ElevatedButton.styleFrom(
-                      primary:
-                          Colors.green, // Set the background color to green
+                      backgroundColor: Colors.green, // Set the background color to green
                     ),
-              child: Text('Create Tontine Group',
+              child: const Text('Create Tontine Group',
               style: TextStyle(color: Colors.white),
               ),
             ),

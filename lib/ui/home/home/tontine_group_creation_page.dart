@@ -6,7 +6,7 @@ class TontineGroupCreationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(248, 243, 243, 1),
+      backgroundColor: const Color.fromRGBO(248, 243, 243, 1),
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -17,14 +17,14 @@ class TontineGroupCreationPage extends StatelessWidget {
               height: 40.0,
               width: 40.0,
             ),
-            Spacer(),
-            SizedBox(width: 8.0),
-            Text(
+            const Spacer(),
+            const SizedBox(width: 8.0),
+            const Text(
               "Hi Kossi",
               style: TextStyle(fontSize: 20.0),
             ),
-            Spacer(),
-            Icon(Icons.notifications, color: Colors.green,),
+            const Spacer(),
+            const Icon(Icons.notifications, color: Colors.green,),
           ],
         ),
       ),
@@ -35,7 +35,7 @@ class TontineGroupCreationPage extends StatelessWidget {
           children: [
             // Column like a pop-up
             Container(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10.0),
@@ -44,14 +44,14 @@ class TontineGroupCreationPage extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 3,
                     blurRadius: 5,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "You have no Tontine Group",
                     style: TextStyle(
                       fontSize: 18.0,
@@ -66,10 +66,9 @@ class TontineGroupCreationPage extends StatelessWidget {
                       // Add your button action here
                     },
                     style: ElevatedButton.styleFrom(
-                      primary:
-                          Colors.green, // Set the background color to green
+                      backgroundColor: Colors.green, // Set the background color to green
                     ),
-                    child: Text(
+                    child: const Text(
                       "Create Tontine",
                       style: TextStyle(color: Colors.white),
                     ),
@@ -77,7 +76,7 @@ class TontineGroupCreationPage extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 150.0),
+            const SizedBox(height: 150.0),
 
             // Column with image and text
             Padding(
@@ -90,8 +89,8 @@ class TontineGroupCreationPage extends StatelessWidget {
                     width: double.infinity,
                     fit: BoxFit.contain,
                   ),
-                  SizedBox(height: 10.0),
-                  Text(
+                  const SizedBox(height: 10.0),
+                  const Text(
                     "You have not created a group yet",
                     style: TextStyle(fontSize: 16.0),
                   ),
@@ -102,7 +101,7 @@ class TontineGroupCreationPage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'DASHBOARD',
