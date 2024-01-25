@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tontineo_mobile_app/state/authentication_Event.dart';
-import 'package:tontineo_mobile_app/state/authentication_bloc.dart';
-import 'package:tontineo_mobile_app/state/authentication_state.dart';
+import 'package:tontineo_mobile_app/state/auth/authentication_Event.dart';
+import 'package:tontineo_mobile_app/state/auth/authentication_bloc.dart';
+import 'package:tontineo_mobile_app/state/auth/authentication_state.dart';
 import 'package:tontineo_mobile_app/ui/auth/login/log_in.dart';
-import 'package:tontineo_mobile_app/ui/auth/login/tontine_login_page.dart';
 import 'package:tontineo_mobile_app/ui/home/tontine_home_page.dart';
 
 class SignupScreen extends StatefulWidget {

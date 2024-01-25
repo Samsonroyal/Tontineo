@@ -63,4 +63,19 @@ class UserService {
   //   }
   //   return null;
   // }
+
+  Future<Map<String, dynamic>?> getUserById(String userId) async {
+    try {
+      DocumentSnapshot userSnapshot =
+          await _firestore.collection('users').doc(userId).get();
+      if (userSnapshot.exists) {
+        return userSnapshot.data() as Map<String, dynamic>;
+      } else {
+        print('User not found');
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+    return null;
+  }
 }

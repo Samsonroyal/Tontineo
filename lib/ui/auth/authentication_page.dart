@@ -21,7 +21,7 @@ class AuthenticationFlowScreen extends StatelessWidget {
             print("user .... ${user}");
             return TontineHomePage(
               user: UserModel(
-                id: user?.displayName,
+                id: user?.uid,
                 email: user?.email,
                 displayName: user?.displayName,
               ),

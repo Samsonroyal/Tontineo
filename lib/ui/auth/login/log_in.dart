@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tontineo_mobile_app/state/authentication_Event.dart';
-import 'package:tontineo_mobile_app/state/authentication_bloc.dart';
-import 'package:tontineo_mobile_app/state/authentication_state.dart';
+import 'package:tontineo_mobile_app/state/auth/authentication_Event.dart';
+import 'package:tontineo_mobile_app/state/auth/authentication_bloc.dart';
+import 'package:tontineo_mobile_app/state/auth/authentication_state.dart';
 import 'package:tontineo_mobile_app/ui/auth/register/sign_up.dart';
 import 'package:tontineo_mobile_app/ui/home/tontine_home_page.dart';
 
@@ -137,7 +137,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   onTap: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => const SignupScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => const SignupScreen()),
                     );
                   },
                   child: const Text(
