@@ -19,7 +19,7 @@ class TontineHomePage extends StatelessWidget {
             Spacer(),
             SizedBox(width: 8.0),
             Text(
-              "Hi Kossi",
+              "Hi",
               style: TextStyle(fontSize: 20.0),
             ),
             Spacer(),
@@ -32,7 +32,6 @@ class TontineHomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Column like a pop-up
             Container(
               width: 315.458984375,
               height: 156.80709838867188,
@@ -56,7 +55,7 @@ class TontineHomePage extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      // Add your button action here
+                      Navigator.popAndPushNamed(context, '/create_tontine');
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xff0da62f),
@@ -64,7 +63,7 @@ class TontineHomePage extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(6.0),
                       ),
-                      minimumSize: Size(164, 46),
+                      minimumSize: Size(100, 46),
                     ),
                     child: Text(
                       "Create Tontine",
@@ -74,8 +73,7 @@ class TontineHomePage extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 150.0),
-
+            SizedBox(height: 100.0),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
