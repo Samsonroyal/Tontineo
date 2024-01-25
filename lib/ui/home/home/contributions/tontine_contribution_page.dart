@@ -62,7 +62,7 @@ class TontineContributions extends StatelessWidget {
               visible: true, // Condition to check if user has no tontine group
               child: Container(
                 width: 315.458984375,
-                height: 156.80709838867188,
+                height: 180.80709838867188,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(11.06873607635498),
                   color: Colors.white,
@@ -103,7 +103,7 @@ class TontineContributions extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 150.0),
+            const SizedBox(height: 50.0),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
