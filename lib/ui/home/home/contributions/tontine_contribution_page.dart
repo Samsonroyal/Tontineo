@@ -4,7 +4,8 @@ class RecordContributionsScreen extends StatefulWidget {
   const RecordContributionsScreen({Key? key}) : super(key: key);
 
   @override
-  State<RecordContributionsScreen> createState() => _RecordContributionsScreenState();
+  State<RecordContributionsScreen> createState() =>
+      _RecordContributionsScreenState();
 }
 
 class _RecordContributionsScreenState extends State<RecordContributionsScreen> {
@@ -20,7 +21,7 @@ class _RecordContributionsScreenState extends State<RecordContributionsScreen> {
           children: [
             CircleAvatar(
               radius: 20.0,
-              backgroundImage: AssetImage("lib/assets/images/avatar.png"), 
+              backgroundImage: AssetImage("lib/assets/images/avatar.png"),
             ),
             Spacer(),
             SizedBox(width: 8.0),
@@ -46,8 +47,6 @@ class _RecordContributionsScreenState extends State<RecordContributionsScreen> {
 }
 
 class TontineContributions extends StatelessWidget {
-  const TontineContributions({super.key, Key? key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +58,6 @@ class TontineContributions extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
             Visibility(
               visible: true, // Condition to check if user has no tontine group
               child: Container(
@@ -111,7 +109,7 @@ class TontineContributions extends StatelessWidget {
               child: Column(
                 children: [
                   Image.asset(
-                    "lib/assets/images/group_image.png", 
+                    "lib/assets/images/group_image.png",
                     height: 180.0,
                     width: double.infinity,
                     fit: BoxFit.contain,
@@ -123,7 +121,7 @@ class TontineContributions extends StatelessWidget {
                 ],
               ),
             ),
-            
+
             const SizedBox(height: 80.0),
             // Add a button to record contributions
             ElevatedButton(
@@ -144,7 +142,7 @@ class TontineContributions extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20.0),
-             ElevatedButton(
+            ElevatedButton(
               onPressed: () {
                 // Handle "Record Contributions" button action
               },
@@ -161,10 +159,6 @@ class TontineContributions extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
             ),
-
-
-
-
           ],
         ),
       ),

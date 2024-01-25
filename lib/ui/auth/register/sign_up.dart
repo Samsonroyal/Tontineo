@@ -5,6 +5,7 @@ import 'package:tontineo_mobile_app/state/authentication_bloc.dart';
 import 'package:tontineo_mobile_app/state/authentication_state.dart';
 import 'package:tontineo_mobile_app/ui/auth/login/log_in.dart';
 import 'package:tontineo_mobile_app/ui/auth/login/tontine_login_page.dart';
+import 'package:tontineo_mobile_app/ui/home/tontine_home_page.dart';
 
 class SignupScreen extends StatefulWidget {
   static String id = 'signup';
@@ -21,6 +22,8 @@ class _SignupScreenState extends State<SignupScreen> {
   // Text Controllers
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final phoneController = TextEditingController();
+  final nameController = TextEditingController();
 
   @override
   void dispose() {
@@ -47,6 +50,26 @@ class _SignupScreenState extends State<SignupScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 20),
+            const Text('Username'),
+            const SizedBox(height: 10),
+            TextFormField(
+              controller: nameController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Enter your username',
+              ),
+            ),
+            const SizedBox(height: 10),
+            const Text('Phone'),
+            const SizedBox(height: 10),
+            TextFormField(
+              controller: phoneController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Enter your phone',
+              ),
+            ),
+            const SizedBox(height: 10),
             const Text('Email address'),
             const SizedBox(height: 10),
             TextFormField(
@@ -82,7 +105,8 @@ class _SignupScreenState extends State<SignupScreen> {
                 if (state is AuthenticationSuccessState) {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()),
+                    MaterialPageRoute(
+                        builder: (context) => const TontineHomePage()),
                   );
                 } else if (state is AuthenticationFailureState) {
                   showDialog(
@@ -104,6 +128,8 @@ class _SignupScreenState extends State<SignupScreen> {
                         SignUpUser(
                           emailController.text.trim(),
                           passwordController.text.trim(),
+                          phoneController.text.trim(),
+                          nameController.text.trim(),
                         ),
                       );
                     },
@@ -128,7 +154,8 @@ class _SignupScreenState extends State<SignupScreen> {
                   onTap: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => const LoginScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => const LoginScreen()),
                     );
                   },
                   child: const Text(

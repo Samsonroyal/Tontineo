@@ -20,7 +20,8 @@ class AuthenticationBloc
             await authService.signUpUser(event.email, event.password);
         if (user != null) {
           // add user to firestore
-          // await userService.addUserToCollection(user)
+          await userService.addUserToCollection(
+              user.id.toString(), event.username, event.email, event.phone);
           emit(AuthenticationSuccessState(user));
         } else {
           emit(const AuthenticationFailureState('create user failed'));
@@ -63,7 +64,7 @@ class AuthenticationBloc
       try {
         final Future<UserModel?> user = authService.getCurrentUser();
         emit(AuthenticationSuccessState(user as UserModel));
-            } catch (e) {
+      } catch (e) {
         print(e.toString());
       }
       emit(AuthenticationLoadingState(isLoading: false));

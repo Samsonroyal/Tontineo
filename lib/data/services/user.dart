@@ -5,7 +5,11 @@ class UserService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<void> addUserToCollection(
-      String userId, String name, String email, String phone) async {
+    String userId,
+    String name,
+    String email,
+    String phone,
+  ) async {
     try {
       await _firestore.collection('users').doc(userId).set({
         'name': name,
