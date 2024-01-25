@@ -64,18 +64,51 @@ class UserService {
   //   return null;
   // }
 
-  Future<Map<String, dynamic>?> getUserById(String userId) async {
+  // Future<Map<String, dynamic>?> getUserById(String userId) async {
+  //   try {
+  //     DocumentSnapshot userSnapshot =
+  //         await _firestore.collection('users').doc(userId).get();
+  //     if (userSnapshot.exists) {
+  //       return userSnapshot.data() as Map<String, dynamic>;
+  //     } else {
+  //       print('User not found');
+  //     }
+  //   } catch (e) {
+  //     print(e.toString());
+  //   }
+  //   return null;
+  // }
+
+  Future<AdminModel?> getUserById(String userId) async {
     try {
-      DocumentSnapshot userSnapshot =
-          await _firestore.collection('users').doc(userId).get();
-      if (userSnapshot.exists) {
-        return userSnapshot.data() as Map<String, dynamic>;
+      // Reference to the 'users' collection
+      CollectionReference users =
+          FirebaseFirestore.instance.collection('users');
+
+      // Get the document snapshot corresponding to the provided user ID
+      DocumentSnapshot documentSnapshot = await users.doc(userId).get();
+
+      // Check if the document exists
+      if (documentSnapshot.exists) {
+        // Extract data from the document snapshot
+        Map<String, dynamic> data =
+            documentSnapshot.data() as Map<String, dynamic>;
+
+        // Create an AdminModel object from the data
+        AdminModel user = AdminModel(
+          name: data['name'],
+          email: data['email'],
+          uid: data['uid'],
+          phone: data['phone'],
+        );
+
+        return user;
       } else {
-        print('User not found');
+        print('Document does not exist');
       }
     } catch (e) {
-      print(e.toString());
+      print('Error getting user by ID: $e');
     }
-    return null;
+    return null; // Return null if an error occurs or if document doesn't exist
   }
 }
