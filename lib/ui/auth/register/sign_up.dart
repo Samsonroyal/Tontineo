@@ -36,18 +36,21 @@ class _SignupScreenState extends State<SignupScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Create Account',
+          'Create an Account',
           style: TextStyle(
-            color: Colors.deepPurple,
+            color: Colors.green,
           ),
         ),
         centerTitle: true,
       ),
+      
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 16.0),
+            const Text("Create and Manage your Tontine with ease"),
             const SizedBox(height: 20),
             const Text('Full Name'),
             const SizedBox(height: 10),
@@ -106,7 +109,7 @@ class _SignupScreenState extends State<SignupScreen> {
               child: const Text(
                 'Forgot password?',
                 style: TextStyle(
-                  color: Colors.redAccent,
+                  color: Colors.grey,
                 ),
               ),
             ),

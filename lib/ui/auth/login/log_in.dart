@@ -34,9 +34,9 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Login',
+          'Login to your Account',
           style: TextStyle(
-            color: Colors.deepPurple,
+            color: Colors.green,
           ),
         ),
         centerTitle: true,
@@ -46,7 +46,13 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 10),
+            const Text(
+            "Welcome Back",
+            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+          ),
+            const SizedBox(height: 20.0),
+          const Text("Enter your details to continue"),
+            const SizedBox(height: 20),
             const Text('Email address'),
             const SizedBox(height: 10),
             TextFormField(
@@ -80,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: const Text(
                 'Forgot password?',
                 style: TextStyle(
-                  color: Colors.redAccent,
+                  color: Colors.grey,
                 ),
               ),
             ),
@@ -118,10 +124,19 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       );
                     },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6.0),
+                      ),
+                      padding: const EdgeInsets.all(16.0),
+                      minimumSize: const Size.fromHeight(70.0),
+                    ),
                     child: Text(
                       state is AuthenticationLoadingState ? '.......' : 'Login',
                       style: const TextStyle(
                         fontSize: 20,
+                        color: Colors.white
                       ),
                     ),
                   ),
@@ -144,7 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: const Text(
                     'Signup',
                     style: TextStyle(
-                      color: Colors.deepPurple,
+                      color: Colors.green,
                     ),
                   ),
                 )
