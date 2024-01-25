@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -105,12 +106,12 @@ class _LoginPageState extends State<LoginPage> {
                   // Implement registration functionality
                 },
                 style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6.0),
-                ),
-                padding: const EdgeInsets.all(16.0),
-                minimumSize: const Size.fromHeight(80.0),
+                  backgroundColor: Colors.green,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6.0),
+                  ),
+                  padding: const EdgeInsets.all(16.0),
+                  minimumSize: const Size.fromHeight(80.0),
                 ),
                 child: const Text(
                   "Login",
