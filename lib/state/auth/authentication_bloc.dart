@@ -2,8 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tontineo_mobile_app/data/model/user.dart';
 import 'package:tontineo_mobile_app/data/services/authentication.dart';
 import 'package:tontineo_mobile_app/data/services/user.dart';
-import 'package:tontineo_mobile_app/state/authentication_Event.dart';
-import 'package:tontineo_mobile_app/state/authentication_state.dart';
+import 'package:tontineo_mobile_app/state/auth/authentication_Event.dart';
+import 'package:tontineo_mobile_app/state/auth/authentication_state.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {

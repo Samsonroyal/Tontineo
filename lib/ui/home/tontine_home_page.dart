@@ -1,9 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tontineo_mobile_app/data/model/user.dart';
-import 'package:tontineo_mobile_app/state/authentication_Event.dart';
-import 'package:tontineo_mobile_app/state/authentication_bloc.dart';
-import 'package:tontineo_mobile_app/state/authentication_state.dart';
+import 'package:tontineo_mobile_app/state/auth/authentication_Event.dart';
+import 'package:tontineo_mobile_app/state/auth/authentication_bloc.dart';
+import 'package:tontineo_mobile_app/state/auth/authentication_state.dart';
 
 class TontineHomePage extends StatefulWidget {
   static String id = 'home';
@@ -16,6 +17,14 @@ class TontineHomePage extends StatefulWidget {
 }
 
 class _TontineHomePageState extends State<TontineHomePage> {
+  // BAD practice: move to state
+  Future<DocumentSnapshot> fetchUserData() async {
+    print("idddd.... ${widget.user?.id}");
+
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    return await users.doc(widget.user?.id).get();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,40 +40,40 @@ class _TontineHomePageState extends State<TontineHomePage> {
             ),
             const Spacer(),
             const SizedBox(width: 8.0),
-            Text(
-              "Hi kossi ${widget.user?.email}",
-              style: const TextStyle(fontSize: 20.0),
+            FutureBuilder<DocumentSnapshot>(
+              future: fetchUserData(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                }
+
+                if (snapshot.hasError) {
+                  return Text(
+                    "Error: ${snapshot.error}",
+                    style: const TextStyle(fontSize: 10.0),
+                  );
+                }
+
+                if (snapshot.hasData && snapshot.data!.exists) {
+                  Map<String, dynamic> data =
+                      snapshot.data!.data() as Map<String, dynamic>;
+                  return Text(
+                    "Hi ${data["name"]}",
+                    style: const TextStyle(fontSize: 20.0),
+                  );
+                } else {
+                  return Text(
+                    "Document does not exist",
+                    style: const TextStyle(fontSize: 10.0),
+                  );
+                }
+              },
             ),
             const Spacer(),
             const Icon(
               Icons.notifications,
               color: Colors.green,
-            ),
-            BlocConsumer<AuthenticationBloc, AuthenticationState>(
-              listener: (context, state) {
-                if (state is AuthenticationLoadingState) {
-                  const CircularProgressIndicator();
-                } else if (state is AuthenticationFailureState) {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return const AlertDialog(
-                          content: Text('error'),
-                        );
-                      });
-                }
-              },
-              builder: (context, state) {
-                return IconButton(
-                  icon: const Icon(
-                    Icons.notifications,
-                    color: Colors.green,
-                  ),
-                  onPressed: () {
-                    BlocProvider.of<AuthenticationBloc>(context).add(SignOut());
-                  },
-                );
-              },
             ),
           ],
         ),
