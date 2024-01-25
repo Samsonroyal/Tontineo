@@ -57,6 +57,7 @@
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
+    "io.flutter.reload.alreadyRun": "true",
     "last_opened_file_path": "C:/Repos/Tontineo-monorepo/tontineo_mobile_app",
     "show.migrate.to.gradle.popup": "false"
   }
