@@ -19,7 +19,7 @@ class TontineHomePage extends StatefulWidget {
 class _TontineHomePageState extends State<TontineHomePage> {
   // BAD practice: move to state
   Future<DocumentSnapshot> fetchUserData() async {
-    print("idddd.... ${widget.user?.id}");
+    print("Hello.. ${widget.user?.displayName}");
 
     CollectionReference users = FirebaseFirestore.instance.collection('users');
     return await users.doc(widget.user?.id).get();
@@ -106,10 +106,10 @@ class _TontineHomePageState extends State<TontineHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Column like a pop-up
+            
             Container(
               width: 315.458984375,
-              height: 156.80709838867188,
+              height: 180.80709838867188,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(11.06873607635498),
                 color: Colors.white,
@@ -130,7 +130,7 @@ class _TontineHomePageState extends State<TontineHomePage> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      // Add your button action here
+                     
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xff0da62f),
@@ -148,7 +148,7 @@ class _TontineHomePageState extends State<TontineHomePage> {
                 ],
               ),
             ),
-            const SizedBox(height: 150.0),
+            const SizedBox(height: 50.0),
 
             Padding(
               padding: const EdgeInsets.all(8.0),
