@@ -32,14 +32,11 @@ class _TontineHomePageState extends State<TontineHomePage> {
             const Spacer(),
             const SizedBox(width: 8.0),
             Text(
-              "Hi kossi ${widget.user?.email}",
+              "Hi ${widget.user?.displayName}",
               style: const TextStyle(fontSize: 20.0),
             ),
             const Spacer(),
-            const Icon(
-              Icons.notifications,
-              color: Colors.green,
-            ),
+            
             BlocConsumer<AuthenticationBloc, AuthenticationState>(
               listener: (context, state) {
                 if (state is AuthenticationLoadingState) {
