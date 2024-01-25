@@ -9,6 +9,7 @@ class UserService {
     String name,
     String email,
     String phone,
+    String selectedUserType,
   ) async {
     try {
       await _firestore.collection('users').doc(userId).set({
@@ -16,6 +17,7 @@ class UserService {
         'email': email,
         'uid': userId,
         'phone': phone,
+        'selectedUserType': selectedUserType
       });
     } catch (e) {
       print(e.toString());
@@ -33,6 +35,7 @@ class UserService {
           email: data['email'],
           uid: data['uid'],
           phone: data['phone'],
+          selectedUserType: data['selectedUserType'],
         );
       }
     } catch (e) {
@@ -100,6 +103,7 @@ class UserService {
           email: data['email'],
           uid: data['uid'],
           phone: data['phone'],
+          selectedUserType: data['selectedUserType'],
         );
 
         return user;

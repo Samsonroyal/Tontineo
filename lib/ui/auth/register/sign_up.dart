@@ -54,6 +54,7 @@ class _SignupScreenState extends State<SignupScreen> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
+        physics: AlwaysScrollableScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -62,8 +63,8 @@ class _SignupScreenState extends State<SignupScreen> {
               const SizedBox(height: 16.0),
               const Text("Create and Manage your Tontine with ease"),
               const SizedBox(height: 20),
-              const Text('Full Name'),
-              const SizedBox(height: 10),
+              // const Text('Full Name'),
+              // const SizedBox(height: 10),
               TextFormField(
                 controller: nameController,
                 decoration: const InputDecoration(
@@ -75,8 +76,8 @@ class _SignupScreenState extends State<SignupScreen> {
                   hintText: 'Enter your Name',
                 ),
               ),
-              const SizedBox(height: 10),
-              const Text('Phone'),
+              // const SizedBox(height: 10),
+              // const Text('Phone'),
               const SizedBox(height: 10),
               TextFormField(
                 controller: phoneController,
@@ -90,8 +91,8 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
               ),
               const SizedBox(height: 10),
-              const Text('Email address'),
-              const SizedBox(height: 10),
+              // const Text('Email address'),
+              // const SizedBox(height: 10),
               TextFormField(
                 controller: emailController,
                 decoration: const InputDecoration(
@@ -104,7 +105,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
               ),
               const SizedBox(height: 10),
-              const Text('Password'),
+              // const Text('Password'),
               TextFormField(
                 controller: passwordController,
                 decoration: const InputDecoration(
@@ -118,20 +119,28 @@ class _SignupScreenState extends State<SignupScreen> {
                 obscureText: true,
               ),
               const SizedBox(height: 10),
-              const Text('Select User Type'),
-              DropdownButtonFormField<String>(
-                value: selectedUserType,
-                onChanged: (String? newValue) {
-                  setState(() {
-                    selectedUserType = newValue!;
-                  });
-                },
-                items: userTypes.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
+              // const Text('Select User Type'),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                child: DropdownButtonFormField<String>(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  value: selectedUserType,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      selectedUserType = newValue!;
+                    });
+                  },
+                  items:
+                      userTypes.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
               ),
               const SizedBox(height: 10),
               GestureDetector(
@@ -171,11 +180,11 @@ class _SignupScreenState extends State<SignupScreen> {
                       onPressed: () {
                         BlocProvider.of<AuthenticationBloc>(context).add(
                           SignUpUser(
-                            emailController.text.trim(),
-                            passwordController.text.trim(),
-                            phoneController.text.trim(),
-                            nameController.text.trim(),
-                          ),
+                              emailController.text.trim(),
+                              passwordController.text.trim(),
+                              phoneController.text.trim(),
+                              nameController.text.trim(),
+                              selectedUserType),
                         );
                       },
                       style: ElevatedButton.styleFrom(

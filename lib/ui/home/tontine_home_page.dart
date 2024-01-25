@@ -244,6 +244,7 @@ Future<AdminModel?> getUserById(String userId) async {
         email: data['email'],
         uid: data['uid'],
         phone: data['phone'],
+        selectedUserType: data['selectedUserType'],
       );
       print("userrr ..... ${user}");
       return user;

@@ -20,8 +20,8 @@ class AuthenticationBloc
             await authService.signUpUser(event.email, event.password);
         if (user != null) {
           // add user to firestore
-          await userService.addUserToCollection(
-              user.id.toString(), event.username, event.email, event.phone);
+          await userService.addUserToCollection(user.id.toString(),
+              event.username, event.email, event.phone, event.selectedUserType);
           emit(AuthenticationSuccessState(user));
         } else {
           emit(const AuthenticationFailureState('create user failed'));
