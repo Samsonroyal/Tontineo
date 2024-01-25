@@ -5,6 +5,7 @@ import 'package:tontineo_mobile_app/data/model/user.dart';
 import 'package:tontineo_mobile_app/state/auth/authentication_Event.dart';
 import 'package:tontineo_mobile_app/state/auth/authentication_bloc.dart';
 import 'package:tontineo_mobile_app/state/auth/authentication_state.dart';
+import 'package:tontineo_mobile_app/ui/home/home/tontine_group_creation.dart';
 
 class TontineHomePage extends StatefulWidget {
   static String id = 'home';
@@ -71,7 +72,6 @@ class _TontineHomePageState extends State<TontineHomePage> {
               },
             ),
             const Spacer(),
-            
             BlocConsumer<AuthenticationBloc, AuthenticationState>(
               listener: (context, state) {
                 if (state is AuthenticationLoadingState) {
@@ -106,7 +106,6 @@ class _TontineHomePageState extends State<TontineHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            
             Container(
               width: 315.458984375,
               height: 180.80709838867188,
@@ -130,7 +129,12 @@ class _TontineHomePageState extends State<TontineHomePage> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                     
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const TontineGroupCreation(),
+                        ),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xff0da62f),
@@ -149,7 +153,6 @@ class _TontineHomePageState extends State<TontineHomePage> {
               ),
             ),
             const SizedBox(height: 50.0),
-
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(

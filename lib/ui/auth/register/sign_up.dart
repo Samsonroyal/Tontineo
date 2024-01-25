@@ -43,7 +43,6 @@ class _SignupScreenState extends State<SignupScreen> {
         ),
         centerTitle: true,
       ),
-      
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -60,7 +59,8 @@ class _SignupScreenState extends State<SignupScreen> {
                 border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
-                prefixIcon: Icon(Icons.person, color: Color.fromARGB(131, 6, 170, 0)),
+                prefixIcon:
+                    Icon(Icons.person, color: Color.fromARGB(131, 6, 170, 0)),
                 hintText: 'Enter your Name',
               ),
             ),
@@ -73,7 +73,8 @@ class _SignupScreenState extends State<SignupScreen> {
                 border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
-                prefixIcon: Icon(Icons.phone, color: Color.fromARGB(131, 6, 170, 0)),
+                prefixIcon:
+                    Icon(Icons.phone, color: Color.fromARGB(131, 6, 170, 0)),
                 hintText: 'Enter your phone number',
               ),
             ),
@@ -86,7 +87,8 @@ class _SignupScreenState extends State<SignupScreen> {
                 border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
-                prefixIcon: Icon(Icons.email, color: Color.fromARGB(131, 6, 170, 0)),
+                prefixIcon:
+                    Icon(Icons.email, color: Color.fromARGB(131, 6, 170, 0)),
                 hintText: 'Enter your email address',
               ),
             ),
@@ -98,7 +100,8 @@ class _SignupScreenState extends State<SignupScreen> {
                 border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
-                prefixIcon: Icon(Icons.lock, color: Color.fromARGB(131, 6, 170, 0)),
+                prefixIcon:
+                    Icon(Icons.lock, color: Color.fromARGB(131, 6, 170, 0)),
                 hintText: 'Password*',
               ),
               obscureText: true,
@@ -120,7 +123,8 @@ class _SignupScreenState extends State<SignupScreen> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const TontineHomePage()),
+                      builder: (context) => const TontineHomePage(),
+                    ),
                   );
                 } else if (state is AuthenticationFailureState) {
                   showDialog(
@@ -160,9 +164,8 @@ class _SignupScreenState extends State<SignupScreen> {
                           ? '.......'
                           : 'Signup',
                       style: const TextStyle(
-                        fontSize: 20,
-                        color: Color.fromARGB(255, 255, 255, 255)
-                      ),
+                          fontSize: 20,
+                          color: Color.fromARGB(255, 255, 255, 255)),
                     ),
                   ),
                 );
