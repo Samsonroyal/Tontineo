@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tontineo_mobile_app/data/model/AdminModel.dart';
 import 'package:tontineo_mobile_app/data/model/user.dart';
 import 'package:tontineo_mobile_app/state/auth/authentication_Event.dart';
 import 'package:tontineo_mobile_app/state/auth/authentication_bloc.dart';
@@ -19,12 +20,6 @@ class TontineHomePage extends StatefulWidget {
 
 class _TontineHomePageState extends State<TontineHomePage> {
   // BAD practice: move to state
-  Future<DocumentSnapshot> fetchUserData() async {
-    print("Hello.. ${widget.user?.displayName}");
-
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
-    return await users.doc(widget.user?.id).get();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,36 +36,50 @@ class _TontineHomePageState extends State<TontineHomePage> {
             ),
             const Spacer(),
             const SizedBox(width: 8.0),
-            FutureBuilder<DocumentSnapshot>(
-              future: fetchUserData(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+            FutureBuilder<AdminModel?>(
+              future: getUserById(widget.user!.id.toString()),
+              builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return CircularProgressIndicator();
-                }
-
-                if (snapshot.hasError) {
-                  return Text(
-                    "Error: ${snapshot.error}",
-                    style: const TextStyle(fontSize: 10.0),
-                  );
-                }
-
-                if (snapshot.hasData && snapshot.data!.exists) {
-                  Map<String, dynamic> data =
-                      snapshot.data!.data() as Map<String, dynamic>;
-                  return Text(
-                    "Hi ${data["name"]}",
-                    style: const TextStyle(fontSize: 20.0),
-                  );
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else if (snapshot.hasData) {
+                  return Text(snapshot.data!.name);
                 } else {
-                  return Text(
-                    "Document does not exist",
-                    style: const TextStyle(fontSize: 10.0),
-                  );
+                  return Text('User not found');
                 }
               },
             ),
+            // FutureBuilder<DocumentSnapshot>(
+            //   future: fetchUserData(),
+            //   builder: (BuildContext context,
+            //       AsyncSnapshot<DocumentSnapshot> snapshot) {
+            //     if (snapshot.connectionState == ConnectionState.waiting) {
+            //       return CircularProgressIndicator();
+            //     }
+
+            //     if (snapshot.hasError) {
+            //       return Text(
+            //         "Error: ${snapshot.error}",
+            //         style: const TextStyle(fontSize: 10.0),
+            //       );
+            //     }
+
+            //     if (snapshot.hasData && snapshot.data!.exists) {
+            //       Map<String, dynamic> data =
+            //           snapshot.data!.data() as Map<String, dynamic>;
+            //       return Text(
+            //         "Hi ${data["name"]}",
+            //         style: const TextStyle(fontSize: 20.0),
+            //       );
+            //     } else {
+            //       return Text(
+            //         "Document does not exist",
+            //         style: const TextStyle(fontSize: 10.0),
+            //       );
+            //     }
+            //   },
+            // ),
             const Spacer(),
             BlocConsumer<AuthenticationBloc, AuthenticationState>(
               listener: (context, state) {
@@ -210,4 +219,39 @@ class _TontineHomePageState extends State<TontineHomePage> {
       ),
     );
   }
+}
+
+Future<AdminModel?> getUserById(String userId) async {
+  try {
+    print("userrr ..... ${userId}");
+    print("userrr 1 ..... ${userId}");
+
+    // Reference to the 'users' collection
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+    // Get the document snapshot corresponding to the provided user ID
+    DocumentSnapshot documentSnapshot = await users.doc(userId).get();
+    print("userrr 2 ..... ${documentSnapshot}");
+    // Check if the document exists
+    if (documentSnapshot.exists) {
+      // Extract data from the document snapshot
+      Map<String, dynamic> data =
+          documentSnapshot.data() as Map<String, dynamic>;
+
+      // Create an AdminModel object from the data
+      AdminModel user = AdminModel(
+        name: data['name'],
+        email: data['email'],
+        uid: data['uid'],
+        phone: data['phone'],
+      );
+      print("userrr ..... ${user}");
+      return user;
+    } else {
+      print('Document does not exist');
+    }
+  } catch (e) {
+    print('Error getting user by ID: $e');
+  }
+  return null; // Return null if an error occurs or if document doesn't exist
 }
