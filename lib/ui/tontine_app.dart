@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tontineo_mobile_app/ui/home/home/tontine_contribution_page.dart';
-import 'package:tontineo_mobile_app/auth/login/tontine_login_page.dart';
-import 'package:tontineo_mobile_app/ui/splash/splash_screen.dart';
+import 'package:tontineo_mobile_app/ui/auth/authentication_page.dart';
+import 'package:tontineo_mobile_app/ui/auth/login/log_in.dart';
+import 'package:tontineo_mobile_app/ui/auth/register/sign_up.dart';
+import 'package:tontineo_mobile_app/ui/home/home/contributions/tontine_contribution_page.dart';
 import 'package:tontineo_mobile_app/ui/home/tontine_home_page.dart';
 import 'package:tontineo_mobile_app/ui/home/settings/tontine_settings_page.dart';
-import 'package:tontineo_mobile_app/auth/register/tontineo_signup_page.dart';
 
 class TontineoApp extends StatelessWidget {
   const TontineoApp({super.key});
@@ -18,16 +18,15 @@ class TontineoApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      initialRoute: '/splash',
+      initialRoute: '/main',
       routes: <String, WidgetBuilder>{
-        '/splash': (context) => const SplashScreen(),
-        '/welcome': (context) => const SignUpPage(),
-        '/login': (context) => const LoginPage(),
+        '/signup': (context) => const SignupScreen(),
+        '/login': (context) => const LoginScreen(),
         '/home': (context) => const TontineHomePage(),
         '/settings': (context) => const SettingsPage(),
-        '/contributions': (context) => const TontineContributions(),
+        '/contributions': (context) => TontineContributions(),
       },
-      home: const TontineHomePage(),
+      home: const AuthenticationFlowScreen(),
     );
   }
 }

@@ -15,7 +15,6 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushNamed(context, '/welcome');
       print('Navigating to Home Screen...');
-
     });
   }
 
@@ -28,7 +27,8 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           ClipOval(
             child: Container(
-              color: const Color.fromARGB(80, 255, 255, 255), // Set the color to green
+              color: const Color.fromARGB(
+                  80, 255, 255, 255), // Set the color to green
               child: Image.asset(
                 'lib/assets/images/tontineo.png', // Replace with the path to your logo image
                 width: 200.0,
@@ -36,7 +36,6 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
           ),
-          
         ],
       ),
     );
