@@ -50,13 +50,16 @@ class _SignupScreenState extends State<SignupScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 20),
-            const Text('Username'),
+            const Text('Full Name'),
             const SizedBox(height: 10),
             TextFormField(
               controller: nameController,
               decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Enter your username',
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                ),
+                prefixIcon: Icon(Icons.person, color: Color.fromARGB(131, 6, 170, 0)),
+                hintText: 'Enter your Name',
               ),
             ),
             const SizedBox(height: 10),
@@ -65,8 +68,11 @@ class _SignupScreenState extends State<SignupScreen> {
             TextFormField(
               controller: phoneController,
               decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Enter your phone',
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                ),
+                prefixIcon: Icon(Icons.phone, color: Color.fromARGB(131, 6, 170, 0)),
+                hintText: 'Enter your phone number',
               ),
             ),
             const SizedBox(height: 10),
@@ -75,8 +81,11 @@ class _SignupScreenState extends State<SignupScreen> {
             TextFormField(
               controller: emailController,
               decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Enter your email',
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                ),
+                prefixIcon: Icon(Icons.email, color: Color.fromARGB(131, 6, 170, 0)),
+                hintText: 'Enter your email address',
               ),
             ),
             const SizedBox(height: 10),
@@ -84,10 +93,13 @@ class _SignupScreenState extends State<SignupScreen> {
             TextFormField(
               controller: passwordController,
               decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Enter your password',
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                ),
+                prefixIcon: Icon(Icons.lock, color: Color.fromARGB(131, 6, 170, 0)),
+                hintText: 'Password*',
               ),
-              obscureText: false,
+              obscureText: true,
             ),
             const SizedBox(height: 10),
             GestureDetector(
@@ -95,7 +107,7 @@ class _SignupScreenState extends State<SignupScreen> {
               child: const Text(
                 'Forgot password?',
                 style: TextStyle(
-                  color: Colors.deepPurple,
+                  color: Colors.redAccent,
                 ),
               ),
             ),
@@ -133,12 +145,21 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                       );
                     },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6.0),
+                      ),
+                      padding: const EdgeInsets.all(16.0),
+                      minimumSize: const Size.fromHeight(70.0),
+                    ),
                     child: Text(
                       state is AuthenticationLoadingState
                           ? '.......'
                           : 'Signup',
                       style: const TextStyle(
                         fontSize: 20,
+                        color: Color.fromARGB(255, 255, 255, 255)
                       ),
                     ),
                   ),
@@ -161,7 +182,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   child: const Text(
                     'Login',
                     style: TextStyle(
-                      color: Colors.deepPurple,
+                      color: Colors.green,
                     ),
                   ),
                 )

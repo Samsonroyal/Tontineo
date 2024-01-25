@@ -46,14 +46,17 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             const Text('Email address'),
             const SizedBox(height: 10),
             TextFormField(
               controller: emailController,
               decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Enter your email',
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                ),
+                prefixIcon: Icon(Icons.email, color: Color.fromARGB(131, 6, 170, 0)),
+                hintText: 'Enter your email address',
               ),
             ),
             const SizedBox(height: 10),
@@ -61,20 +64,23 @@ class _LoginScreenState extends State<LoginScreen> {
             TextFormField(
               controller: passwordController,
               decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Enter your password',
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                ),
+                prefixIcon: Icon(Icons.lock, color: Color.fromARGB(131, 6, 170, 0)),
+                hintText: 'Password*',
               ),
               obscureText: true,
             ),
             const SizedBox(height: 10),
             GestureDetector(
               onTap: () {
-                // Add functionality for "Forgot password" here
+              
               },
               child: const Text(
                 'Forgot password?',
                 style: TextStyle(
-                  color: Colors.deepPurple,
+                  color: Colors.redAccent,
                 ),
               ),
             ),
