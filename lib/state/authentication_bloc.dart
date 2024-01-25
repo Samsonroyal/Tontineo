@@ -1,12 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tontineo_mobile_app/data/model/user.dart';
 import 'package:tontineo_mobile_app/data/services/authentication.dart';
+import 'package:tontineo_mobile_app/data/services/user.dart';
 import 'package:tontineo_mobile_app/state/authentication_Event.dart';
 import 'package:tontineo_mobile_app/state/authentication_state.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   final AuthService authService = AuthService();
+  final UserService userService = UserService();
 
   AuthenticationBloc() : super(AuthenticationInitialState()) {
     on<AuthenticationEvent>((event, emit) {});
@@ -17,6 +19,8 @@ class AuthenticationBloc
         final UserModel? user =
             await authService.signUpUser(event.email, event.password);
         if (user != null) {
+          // add user to firestore
+          // await userService.addUserToCollection(user)
           emit(AuthenticationSuccessState(user));
         } else {
           emit(const AuthenticationFailureState('create user failed'));
@@ -58,13 +62,8 @@ class AuthenticationBloc
       emit(AuthenticationLoadingState(isLoading: true));
       try {
         final Future<UserModel?> user = authService.getCurrentUser();
-        if (user != null) {
-          emit(AuthenticationSuccessState(user as UserModel));
-        } else {
-          emit(const AuthenticationFailureState(
-              'unable to get user information'));
-        }
-      } catch (e) {
+        emit(AuthenticationSuccessState(user as UserModel));
+            } catch (e) {
         print(e.toString());
       }
       emit(AuthenticationLoadingState(isLoading: false));

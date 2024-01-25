@@ -33,20 +33,20 @@ class _RecordContributionsScreenState extends State<RecordContributionsScreen> {
           ],
         ),
       ),
-      body: Column(
+      body: const Column(
         children: [
           ProfileCard(),
           ContributionSection(),
           RecordButton(),
         ],
       ),
-      bottomNavigationBar: BottomNavbar(),
+      bottomNavigationBar: const BottomNavbar(),
     );
   }
 }
 
 class TontineContributions extends StatelessWidget {
-  const TontineContributions({Key? key});
+  const TontineContributions({super.key, Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -69,11 +69,11 @@ class TontineContributions extends StatelessWidget {
                   borderRadius: BorderRadius.circular(11.06873607635498),
                   color: Colors.white,
                 ),
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "You have no Tontine Group",
                       style: TextStyle(
                         fontSize: 18.0,
@@ -88,14 +88,14 @@ class TontineContributions extends StatelessWidget {
                         // Handle "Create Tontine" button action
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Color(0xff0da62f),
-                        padding: EdgeInsets.all(16.0),
+                        backgroundColor: const Color(0xff0da62f),
+                        padding: const EdgeInsets.all(16.0),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(6.0),
                         ),
-                        minimumSize: Size(164, 46),
+                        minimumSize: const Size(164, 46),
                       ),
-                      child: Text(
+                      child: const Text(
                         "Create Tontine",
                         style: TextStyle(color: Colors.white),
                       ),
@@ -117,7 +117,7 @@ class TontineContributions extends StatelessWidget {
                     fit: BoxFit.contain,
                   ),
                   const SizedBox(height: 10.0),
-                  Text(
+                  const Text(
                     "No tontine contributions yet",
                   ),
                 ],
@@ -131,14 +131,14 @@ class TontineContributions extends StatelessWidget {
                 // Handle "Record Contributions" button action
               },
               style: ElevatedButton.styleFrom(
-                primary: Color(0xff0da62f),
-                padding: EdgeInsets.all(16.0),
+                backgroundColor: const Color(0xff0da62f),
+                padding: const EdgeInsets.all(16.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(6.0),
                 ),
                 minimumSize: const Size.fromHeight(60.0),
               ),
-              child: Text(
+              child: const Text(
                 "Record Contributions",
                 style: TextStyle(color: Colors.white),
               ),
@@ -149,14 +149,14 @@ class TontineContributions extends StatelessWidget {
                 // Handle "Record Contributions" button action
               },
               style: ElevatedButton.styleFrom(
-                primary: Color(0xff0da62f),
-                padding: EdgeInsets.all(16.0),
+                backgroundColor: const Color(0xff0da62f),
+                padding: const EdgeInsets.all(16.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(6.0),
                 ),
                 minimumSize: const Size.fromHeight(60.0),
               ),
-              child: Text(
+              child: const Text(
                 "Make Personal Contributions",
                 style: TextStyle(color: Colors.white),
               ),
@@ -173,6 +173,8 @@ class TontineContributions extends StatelessWidget {
 }
 
 class ProfileCard extends StatelessWidget {
+  const ProfileCard({super.key});
+
   @override
   Widget build(BuildContext context) {
     // Implement the profile card widget
@@ -181,6 +183,8 @@ class ProfileCard extends StatelessWidget {
 }
 
 class ContributionSection extends StatelessWidget {
+  const ContributionSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     // Implement the contribution section widget
@@ -189,6 +193,8 @@ class ContributionSection extends StatelessWidget {
 }
 
 class RecordButton extends StatelessWidget {
+  const RecordButton({super.key});
+
   @override
   Widget build(BuildContext context) {
     // Implement the record button widget
@@ -197,6 +203,8 @@ class RecordButton extends StatelessWidget {
 }
 
 class BottomNavbar extends StatelessWidget {
+  const BottomNavbar({super.key});
+
   @override
   Widget build(BuildContext context) {
     // Implement the bottom navigation bar widget

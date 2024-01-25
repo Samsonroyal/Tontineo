@@ -17,7 +17,7 @@ class PaymentMethodScreen extends StatelessWidget {
       body: Center(
         child: Container(
           width: 300,
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(8),
@@ -26,13 +26,13 @@ class PaymentMethodScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'Pay GHC 3000',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 16),
-              Text('Select the method of Payment'),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
+              const Text('Select the method of Payment'),
+              const SizedBox(height: 16),
               Expanded(
                 child: Theme(
                  data: Theme.of(context).copyWith(
@@ -40,14 +40,14 @@ class PaymentMethodScreen extends StatelessWidget {
                  ),
                  child: DropdownButton<String>(
                     value: null,
-                    hint: Text("Select"),
+                    hint: const Text("Select"),
                     items: paymentMethods.keys.map((String option) {
                       return DropdownMenuItem<String>(
                         value: option,
                         child: Row(
                           children: [
                             Icon(paymentMethods[option]!),
-                            SizedBox(width: 8),
+                            const SizedBox(width: 8),
                             Text(option),
                           ],
                         ),
@@ -59,15 +59,15 @@ class PaymentMethodScreen extends StatelessWidget {
                  ),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
                  // Handle continue button click
                 },
                 style: ElevatedButton.styleFrom(
-                 primary: Colors.green,
+                 backgroundColor: Colors.green,
                 ),
-                child: Text(
+                child: const Text(
                  'Continue',
                  style: TextStyle(color: Colors.white),
                 ),

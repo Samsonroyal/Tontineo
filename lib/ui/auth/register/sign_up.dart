@@ -82,7 +82,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 if (state is AuthenticationSuccessState) {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
+                    MaterialPageRoute(builder: (context) => const LoginPage()),
                   );
                 } else if (state is AuthenticationFailureState) {
                   showDialog(
@@ -128,7 +128,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   onTap: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                      MaterialPageRoute(builder: (context) => const LoginScreen()),
                     );
                   },
                   child: const Text(
