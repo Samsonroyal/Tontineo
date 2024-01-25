@@ -146,7 +146,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 const SizedBox(width: 4.0),
                 GestureDetector(
                   onTap: () {
-                    // Implement action for clickable text
+                    
                   },
                   child: const Text(
                     "Login",

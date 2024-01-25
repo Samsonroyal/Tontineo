@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/tontineo_mobile_app.iml" filepath="$PROJECT_DIR$/tontineo_mobile_app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android/tontineo_mobile_app_android.iml" filepath="$PROJECT_DIR$/android/tontineo_mobile_app_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Tontineo.iml" filepath="$PROJECT_DIR$/.idea/Tontineo.iml" />
     </modules>
   </component>
 </project>
