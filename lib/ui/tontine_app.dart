@@ -10,7 +10,6 @@ import 'package:tontineo_mobile_app/ui/home/settings/tontine_settings_page.dart'
 
 class TontineoApp extends StatelessWidget {
   const TontineoApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,17 +19,14 @@ class TontineoApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-
       initialRoute: '/main',
       routes: <String, WidgetBuilder>{
         '/signup': (context) => const SignupScreen(),
         '/login': (context) => const LoginScreen(),
         '/home': (context) => const TontineHomePage(),
         '/settings': (context) => const SettingsPage(),
-
         '/invite_members': (context) => InviteMembersPage(),
         '/contributions': (context) => TontineContributions(),
-      
       },
       home: const AuthenticationFlowScreen(),
     );
