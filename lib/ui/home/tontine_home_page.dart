@@ -1,14 +1,28 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tontineo_mobile_app/data/model/user.dart';
+import 'package:tontineo_mobile_app/state/authentication_Event.dart';
+import 'package:tontineo_mobile_app/state/authentication_bloc.dart';
+import 'package:tontineo_mobile_app/state/authentication_state.dart';
 
-class TontineHomePage extends StatelessWidget {
-  const TontineHomePage({super.key});
+class TontineHomePage extends StatefulWidget {
+  static String id = 'home';
+  final UserModel? user;
 
+  const TontineHomePage({Key? key, this.user}) : super(key: key);
+
+  @override
+  State<TontineHomePage> createState() => _TontineHomePageState();
+}
+
+class _TontineHomePageState extends State<TontineHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(248, 243, 243, 1),
       appBar: AppBar(
-        title: const Row(
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -19,13 +33,39 @@ class TontineHomePage extends StatelessWidget {
             Spacer(),
             SizedBox(width: 8.0),
             Text(
-              "Hi Kossi",
+              "Hi kossi ${widget.user?.email}",
               style: TextStyle(fontSize: 20.0),
             ),
             Spacer(),
             Icon(
               Icons.notifications,
               color: Colors.green,
+            ),
+            BlocConsumer<AuthenticationBloc, AuthenticationState>(
+              listener: (context, state) {
+                if (state is AuthenticationLoadingState) {
+                  const CircularProgressIndicator();
+                } else if (state is AuthenticationFailureState) {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return const AlertDialog(
+                          content: Text('error'),
+                        );
+                      });
+                }
+              },
+              builder: (context, state) {
+                return IconButton(
+                  icon: Icon(
+                    Icons.notifications,
+                    color: Colors.green,
+                  ),
+                  onPressed: () {
+                    BlocProvider.of<AuthenticationBloc>(context).add(SignOut());
+                  },
+                );
+              },
             ),
           ],
         ),
