@@ -156,10 +156,11 @@ class _SignupScreenState extends State<SignupScreen> {
               BlocConsumer<AuthenticationBloc, AuthenticationState>(
                 listener: (context, state) {
                   if (state is AuthenticationSuccessState) {
+                    // Navigate to home page after successful login
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const TontineHomePage(),
+                        builder: (context) => TontineHomePage(user: state.user),
                       ),
                     );
                   } else if (state is AuthenticationFailureState) {

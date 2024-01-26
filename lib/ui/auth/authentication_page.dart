@@ -5,7 +5,8 @@ import 'package:tontineo_mobile_app/ui/auth/register/sign_up.dart';
 import 'package:tontineo_mobile_app/ui/home/tontine_home_page.dart';
 
 class AuthenticationFlowScreen extends StatelessWidget {
-  const AuthenticationFlowScreen({super.key});
+  final UserModel user;
+  const AuthenticationFlowScreen({Key? key, required this.user}) : super(key: key);
   static String id = 'main';
 
   @override

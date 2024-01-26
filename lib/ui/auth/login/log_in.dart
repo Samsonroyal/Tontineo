@@ -98,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const TontineHomePage(),
+                      builder: (context) => TontineHomePage(user: state.user),
                     ),
                   );
                 } else if (state is AuthenticationFailureState) {

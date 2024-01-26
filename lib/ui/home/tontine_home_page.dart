@@ -1,17 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tontineo_mobile_app/data/model/AdminModel.dart';
 import 'package:tontineo_mobile_app/data/model/user.dart';
-import 'package:tontineo_mobile_app/state/auth/authentication_Event.dart';
-import 'package:tontineo_mobile_app/state/auth/authentication_bloc.dart';
-import 'package:tontineo_mobile_app/state/auth/authentication_state.dart';
 import 'package:tontineo_mobile_app/ui/home/home/tontine_group_creation.dart';
 
 
-class TontineHomePage extends StatelessWidget {
-  const TontineHomePage({super.key});
+class TontineHomePage extends StatefulWidget {
+  final UserModel user;
+  const TontineHomePage({super.key, required this.user});
 
+   @override
+  _TontineHomePageState createState() => _TontineHomePageState();
+}
+
+class _TontineHomePageState extends State<TontineHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,14 +66,13 @@ class TontineHomePage extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const TontineGroupCreation(),
                         ),
                       );
-
+                    },
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xff0da62f),
                       padding: EdgeInsets.all(16.0),
@@ -112,7 +113,7 @@ class TontineHomePage extends StatelessWidget {
       ),
 
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'DASHBOARD',
@@ -145,35 +146,40 @@ class TontineHomePage extends StatelessWidget {
           }
         },
       ),
+    );
+  }
 
+Future<AdminModel?> getUser(String userId) async {
+  // Reference to the 'users' collection
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-    // Reference to the 'users' collection
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
+  // Get the document snapshot corresponding to the provided user ID
+  DocumentSnapshot documentSnapshot = await users.doc(userId).get();
+  print("userrr 2 ..... ${documentSnapshot}");
+  // Check if the document exists
+  if (documentSnapshot.exists) {
+    // Extract data from the document snapshot
+    Map<String, dynamic> data =
+        documentSnapshot.data() as Map<String, dynamic>;
 
-    // Get the document snapshot corresponding to the provided user ID
-    DocumentSnapshot documentSnapshot = await users.doc(userId).get();
-    print("userrr 2 ..... ${documentSnapshot}");
-    // Check if the document exists
-    if (documentSnapshot.exists) {
-      // Extract data from the document snapshot
-      Map<String, dynamic> data =
-          documentSnapshot.data() as Map<String, dynamic>;
-
-      // Create an AdminModel object from the data
-      AdminModel user = AdminModel(
-        name: data['name'],
-        email: data['email'],
-        uid: data['uid'],
-        phone: data['phone'],
-        selectedUserType: data['selectedUserType'],
-      );
-      print("userrr ..... ${user}");
-      return user;
-    } else {
-      print('Document does not exist');
-    }
-  } catch (e) {
-    print('Error getting user by ID: $e');
-
+    // Create an AdminModel object from the data
+    AdminModel user = AdminModel(
+      name: data['name'],
+      email: data['email'],
+      uid: data['uid'],
+      phone: data['phone'],
+      selectedUserType: data['selectedUserType'],
+    );
+    print("user ..... ${user}");
+    return user;
+  } else {
+    print('Document does not exist');
+    return null;
   }
 }
+
+}
+
+
+  
+
