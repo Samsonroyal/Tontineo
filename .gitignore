@@ -430,3 +430,7 @@ migrate_working_dir/
 *.ipr
 *.iws
 .idea/
+
+.idea/libraries/Flutter_Plugins.xml
+.idea/workspace.xml
+.gitignore
