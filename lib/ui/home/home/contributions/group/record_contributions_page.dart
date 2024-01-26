@@ -23,96 +23,117 @@ class _RecordContributionState extends State<RecordContribution> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Amount received (GHS)
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Amount received (GHS)'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Amount required';
-                  }
-                  return null;
-                },
-              ),
-              // Date Received: with dropdown
-              DropdownButtonFormField<String>(
-                value: _selectedDate,
-                hint: Text('Date Received'),
-                items: <String>[
-                  '2024-01-26',
-                  '2024-01-27',
-                  // Add more dates as needed
-                ].map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    _selectedDate = newValue;
-                  });
-                },
-              ),
-              // Group Member received from
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Group Member received from'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Member name required';
-                  }
-                  return null;
-                },
-              ),
-              // Payment method: dropdown list
-              DropdownButtonFormField<String>(
-                value: _selectedPaymentMethod,
-                hint: Text('Payment method'),
-                items: <String>['Cash', 'Momo']
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    _selectedPaymentMethod = newValue;
-                  });
-                },
-              ),
-              // Recipient Signature
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Recipient Signature'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Signature required';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 16.0),
-              // Elevated button with border radius, green background, white text
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  backgroundColor: Colors.green,
-                  primary: Colors.white,
-                ),
-                onPressed: () {
-                  // Validate the form
-                  if (_formKey.currentState!.validate()) {
-                    // Process the form data
-                    // You can add your logic here
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Contribution recorded successfully!'),
+              // Date Received: with date picker
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Date Received(dd/mm/yyyy)',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                        ),
+                        suffixIcon: IconButton(
+                          onPressed: () async {
+                            final selectedDate = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(2022),
+                              lastDate: DateTime.now(),
+                            );
+                            setState(() {
+                              _selectedDate = selectedDate?.toString();
+                            });
+                          },
+                          icon: Icon(Icons.calendar_today,
+                              color: Color.fromARGB(131, 6, 170, 0)),
+                        ),
+                        hintText: 'Select a Date',
                       ),
-                    );
-                  }
-                },
-                child: Text('Record Contribution'),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Date required';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 20.0),
+
+                    // Group Member received from
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Group Member Received From',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Member name required';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 20.0),
+
+                    // Payment method: dropdown list
+                    DropdownButtonFormField<String>(
+                      value: _selectedPaymentMethod,
+                      decoration: const InputDecoration(
+                        labelText: 'Payment Method',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                        ),
+                        prefixIcon: Icon(Icons.attach_money,
+                            color: Color.fromARGB(131, 6, 170, 0)),
+                        hintText: 'select method',
+                      ),
+                      hint: Text('Payment method'),
+                      items: <String>['Cash', 'Momo']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          _selectedPaymentMethod = newValue;
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 20.0),
+
+                    // Recipient Signature
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Recipient Signature',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20.0),
+
+                Container(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.green,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6.0),
+                      ),
+                    ),
+                    onPressed: () {
+                      //TODO: Add logic to record contribution
+                    
+                    },
+                    child: Text('Record Contribution'),
+                  ),
+                ),
+                  ],
+                ),
               ),
             ],
           ),
