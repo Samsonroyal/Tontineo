@@ -64,10 +64,11 @@ class _RecordContributionState extends State<RecordContribution> {
                     // Group Member received from
                     TextFormField(
                       decoration: InputDecoration(
-                        labelText: 'Group Member Received From',
+                        labelText: 'Received From',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(6.0)),
                         ),
+                        hintText: 'Write Group Member Name',
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -113,6 +114,7 @@ class _RecordContributionState extends State<RecordContribution> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(6.0)),
                         ),
+                        hintText: 'Write Your Full Name',
                       ),
                     ),
                     const SizedBox(height: 20.0),
