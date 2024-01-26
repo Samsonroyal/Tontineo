@@ -4,9 +4,9 @@ class UserModel {
   final String? displayName;
   final String? phone;
   UserModel({
-    this.id,
-    this.email,
-    this.displayName,
-    this.phone,
+    required this.id,
+    required this.email,
+    required this.displayName,
+    required this.phone,
   });
 }

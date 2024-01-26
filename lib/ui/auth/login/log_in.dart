@@ -47,11 +47,11 @@ class _LoginScreenState extends State<LoginScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-            "Welcome Back",
-            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-          ),
+              "Welcome Back",
+              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 20.0),
-          const Text("Enter your details to continue"),
+            const Text("Enter your details to continue"),
             const SizedBox(height: 20),
             const Text('Email address'),
             const SizedBox(height: 10),
@@ -61,7 +61,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
-                prefixIcon: Icon(Icons.email, color: Color.fromARGB(131, 6, 170, 0)),
+                prefixIcon:
+                    Icon(Icons.email, color: Color.fromARGB(131, 6, 170, 0)),
                 hintText: 'Enter your email address',
               ),
             ),
@@ -73,16 +74,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
-                prefixIcon: Icon(Icons.lock, color: Color.fromARGB(131, 6, 170, 0)),
+                prefixIcon:
+                    Icon(Icons.lock, color: Color.fromARGB(131, 6, 170, 0)),
                 hintText: 'Password*',
               ),
               obscureText: true,
             ),
             const SizedBox(height: 10),
             GestureDetector(
-              onTap: () {
-              
-              },
+              onTap: () {},
               child: const Text(
                 'Forgot password?',
                 style: TextStyle(
@@ -129,15 +129,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(6.0),
                       ),
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(8.0),
                       minimumSize: const Size.fromHeight(70.0),
                     ),
                     child: Text(
                       state is AuthenticationLoadingState ? '.......' : 'Login',
-                      style: const TextStyle(
-                        fontSize: 20,
-                        color: Colors.white
-                      ),
+                      style: const TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   ),
                 );

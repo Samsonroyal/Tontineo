@@ -24,6 +24,7 @@ class AuthenticationFlowScreen extends StatelessWidget {
                 id: user?.uid,
                 email: user?.email,
                 displayName: user?.displayName,
+                phone: '',
               ),
             );
           }
