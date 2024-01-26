@@ -17,6 +17,12 @@ class _RecordContributionsScreenState extends State<RecordContributionsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // Navigate back to the previous screen
+          },
+        ),
         title: const Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -55,8 +61,8 @@ class TontineContributions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Tontine Contributions"), // Add a descriptive title
-      ),
+                    title: Text('Tontine Contributions'),
+                  ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -172,6 +178,41 @@ class TontineContributions extends StatelessWidget {
             ),
           ],
         ),
+      ),
+
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'DASHBOARD',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.paypal),
+            label: 'CONTRIBUTIONS',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'SETTINGS',
+          ),
+        ],
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.green,
+        unselectedItemColor: Colors.grey,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              Navigator.popAndPushNamed(context, '/home');
+              break;
+            case 1:
+              Navigator.popAndPushNamed(context, '/contributions');
+              break;
+            case 2:
+              Navigator.popAndPushNamed(context, '/settings');
+              break;
+          }
+        },
       ),
     );
   }
