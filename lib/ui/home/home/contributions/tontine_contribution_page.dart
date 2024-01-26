@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tontineo_mobile_app/ui/home/home/contributions/group/record_contributions_page.dart';
+import 'package:tontineo_mobile_app/ui/home/home/contributions/personal/make_contributions_page.dart';
 
 class RecordContributionsScreen extends StatefulWidget {
   const RecordContributionsScreen({Key? key}) : super(key: key);
@@ -47,6 +49,8 @@ class _RecordContributionsScreenState extends State<RecordContributionsScreen> {
 }
 
 class TontineContributions extends StatelessWidget {
+  const TontineContributions({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,10 +127,13 @@ class TontineContributions extends StatelessWidget {
             ),
 
             const SizedBox(height: 80.0),
-            // Add a button to record contributions
             ElevatedButton(
               onPressed: () {
-                // Handle "Record Contributions" button action
+                // Navigate to the RecordContribution screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => RecordContribution()),
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xff0da62f),
@@ -144,7 +151,11 @@ class TontineContributions extends StatelessWidget {
             const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
-                // Handle "Record Contributions" button action
+                // Navigate to the RecordContribution screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MakeContributionsPage()),
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xff0da62f),
@@ -167,7 +178,7 @@ class TontineContributions extends StatelessWidget {
 }
 
 class ProfileCard extends StatelessWidget {
-  const ProfileCard({super.key});
+  const ProfileCard({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -177,7 +188,7 @@ class ProfileCard extends StatelessWidget {
 }
 
 class ContributionSection extends StatelessWidget {
-  const ContributionSection({super.key});
+  const ContributionSection({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -187,7 +198,7 @@ class ContributionSection extends StatelessWidget {
 }
 
 class RecordButton extends StatelessWidget {
-  const RecordButton({super.key});
+  const RecordButton({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -197,7 +208,7 @@ class RecordButton extends StatelessWidget {
 }
 
 class BottomNavbar extends StatelessWidget {
-  const BottomNavbar({super.key});
+  const BottomNavbar({Key? key});
 
   @override
   Widget build(BuildContext context) {
