@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -111,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.circular(6.0),
                   ),
                   padding: const EdgeInsets.all(16.0),
-                  minimumSize: const Size.fromHeight(80.0),
+                  minimumSize: const Size.fromHeight(60.0),
                 ),
                 child: const Text(
                   "Login",
