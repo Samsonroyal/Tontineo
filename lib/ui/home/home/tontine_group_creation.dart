@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:tontineo_mobile_app/ui/home/home/contributions/personal/group_name_display_screen.dart';
 
 class TontineGroupCreation extends StatelessWidget {
-  const TontineGroupCreation({super.key});
+  const TontineGroupCreation({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,13 +11,20 @@ class TontineGroupCreation extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const TontineGroupCreator(),
+      home: TontineGroupCreator(),
     );
   }
 }
 
-class TontineGroupCreator extends StatelessWidget {
-  const TontineGroupCreator({super.key});
+class TontineGroupCreator extends StatefulWidget {
+  const TontineGroupCreator({Key? key}) : super(key: key);
+
+  @override
+  _TontineGroupCreatorState createState() => _TontineGroupCreatorState();
+}
+
+class _TontineGroupCreatorState extends State<TontineGroupCreator> {
+  String groupName = '';
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +33,8 @@ class TontineGroupCreator extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Image.asset('lib/assets/images/tontineo_logo.png', width: 50, height: 50), 
+            Image.asset('lib/assets/images/tontineo_logo.png',
+                width: 50, height: 50),
             const Text('Hello Kossi, \n You have not create a Tontine yet!'),
             const Icon(Icons.group),
           ],
@@ -39,6 +47,12 @@ class TontineGroupCreator extends StatelessWidget {
           children: <Widget>[
             // Column with TextFormFields
             TextFormField(
+              onChanged: (value) {
+                // Update the groupName variable when the text changes
+                setState(() {
+                  groupName = value;
+                });
+              },
               decoration: const InputDecoration(
                 labelText: 'Group Name',
                 border: OutlineInputBorder(),
@@ -63,13 +77,20 @@ class TontineGroupCreator extends StatelessWidget {
             // Create Tontine Group button
             ElevatedButton(
               onPressed: () {
-                // Add your onPressed code here
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => GroupNameDisplayScreen(groupName: groupName),
+                  ),
+                );
               },
               style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green, // Set the background color to green
-                    ),
-              child: const Text('Create Tontine Group',
-              style: TextStyle(color: Colors.white),
+                backgroundColor:
+                    Colors.green, // Set the background color to green
+              ),
+              child: const Text(
+                'Create Tontine Group',
+                style: TextStyle(color: Colors.white),
               ),
             ),
           ],
