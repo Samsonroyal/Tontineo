@@ -24,6 +24,12 @@ pluginManagement {
 plugins {
     id "dev.flutter.flutter-plugin-loader" version "1.0.0"
     id "com.android.application" version "7.3.0" apply false
+
 }
 
 include ":app"
+
+plugin {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
