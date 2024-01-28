@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tontineo_mobile_app/ui/home/home/contributions/group/record_contributions_page.dart';
 import 'package:tontineo_mobile_app/ui/home/home/contributions/personal/make_contributions_page.dart';
+import 'package:tontineo_mobile_app/ui/home/home/tontine_group_creation_page.dart';
 
 class RecordContributionsScreen extends StatefulWidget {
   const RecordContributionsScreen({Key? key}) : super(key: key);
@@ -17,6 +18,8 @@ class _RecordContributionsScreenState extends State<RecordContributionsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white, // Set the background color to white
+        elevation: 4,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -93,7 +96,13 @@ class TontineContributions extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        // Handle "Create Tontine" button action
+                        // Navigate to the TontineGroupCreationPage screen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const TontineGroupCreationPage()),
+                        );
+                        
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xff0da62f),
