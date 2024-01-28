@@ -8,6 +8,8 @@ class TontineGroupCreationPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(248, 243, 243, 1),
       appBar: AppBar(
+        backgroundColor: Colors.white, // Set the background color to white
+        elevation: 4, // Add an elevation of 4
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -33,7 +35,7 @@ class TontineGroupCreationPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Column like a pop-up
+            
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -63,13 +65,51 @@ class TontineGroupCreationPage extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      // Add your button action here
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text('Create Tontine'),
+                            content: Column(
+                              children: [
+                                // Add your fields here
+                                // For example, TextFields for input
+                                TextField(
+                                  decoration: const InputDecoration(
+                                    labelText: 'Field 1',
+                                  ),
+                                ),
+                                TextField(
+                                  decoration: const InputDecoration(
+                                    labelText: 'Field 2',
+                                  ),
+                                ),
+                              ],
+                            ),
+                            actions: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  // Perform the necessary actions when the dialog button is clicked
+                                  // For example, navigate to the tontine_group_creation.dart page
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => TontineGroupCreationPage(),
+                                    ),
+                                  );
+                                },
+                                child: const Text('Create'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green, // Set the background color to green
                     ),
                     child: const Text(
-                      "Create Tontine",
+                      'Create Tontine',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
