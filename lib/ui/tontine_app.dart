@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tontineo_mobile_app/data/model/user.dart';
 import 'package:tontineo_mobile_app/ui/home/home/invite_members_page.dart';
-import 'package:tontineo_mobile_app/ui/home/home/contributions/tontine_contribution_page.dart';
+import 'package:tontineo_mobile_app/ui/home/home/tontine_contribution_page.dart';
+import 'package:tontineo_mobile_app/auth/login/tontine_login_page.dart';
+import 'package:tontineo_mobile_app/ui/splash/splash_screen.dart';
+import 'package:tontineo_mobile_app/ui/auth/authentication_page.dart';
 import 'package:tontineo_mobile_app/ui/auth/login/log_in.dart';
 import 'package:tontineo_mobile_app/ui/auth/register/sign_up.dart';
 
@@ -37,9 +40,12 @@ class _TontineoAppState extends State<TontineoApp> {
         '/dashboard': (context) => const DashboardPage(),        
         '/home': (context) => TontineHomePage(),
         '/settings': (context) => const SettingsPage(),
-        '/create-tontine': (context) => TontineGroupCreation(),
-        '/invite-members': (context) => InviteMembersPage(),
-        '/contributions': (context) => RecordContributions(),
+
+        '/invite_members': (context) => InviteMembersPage(),
+        '/contributions': (context) => const TontineContributions(),
+
+        '/contributions': (context) => TontineContributions(),
+
       },
     );
   }
