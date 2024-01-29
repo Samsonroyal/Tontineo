@@ -62,7 +62,7 @@
     "ignore.virus.scanning.warn.message": "true",
     "io.flutter.reload.alreadyRun": "true",
     "last_opened_file_path": "C:/Repos/Tontineo-monorepo/tontineo_mobile_app",
-    "settings.editor.selected.configurable": "AndroidSdkUpdater",
+    "settings.editor.selected.configurable": "preferences.pathVariables",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
