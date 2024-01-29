@@ -160,7 +160,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => TontineHomePage(user: state.user),
+                        builder: (context) => TontineHomePage(),
                       ),
                     );
                   } else if (state is AuthenticationFailureState) {
