@@ -83,41 +83,6 @@ class SettingsPage extends StatelessWidget {
         ),
       ),
 
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'DASHBOARD',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.paypal),
-            label: 'CONTRIBUTIONS',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'SETTINGS',
-          ),
-        ],
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.green,
-        unselectedItemColor: Colors.grey,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        onTap: (index) {
-          switch (index) {
-            case 0:
-              Navigator.popAndPushNamed(context, '/home');
-              break;
-            case 1:
-              Navigator.popAndPushNamed(context, '/contributions');
-              break;
-            case 2:
-              Navigator.popAndPushNamed(context, '/settings');
-              break;
-          }
-        },
-      ),
-
     );
   }
 }
