@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tontineo_mobile_app/data/model/AdminModel.dart';
 import 'package:tontineo_mobile_app/ui/home/home/contributions/tontine_contribution_page.dart';
 import 'package:tontineo_mobile_app/ui/home/home/tontine_group_creation.dart';
-import 'package:tontineo_mobile_app/ui/home/home/tontines/created_tontines.dart';
+import 'package:tontineo_mobile_app/ui/home/home/tontines/dashboard_page.dart';
 import 'package:tontineo_mobile_app/ui/home/settings/tontine_settings_page.dart';
 
 class TontineHomePage extends StatefulWidget {
@@ -38,7 +38,7 @@ class _TontineHomePageState extends State<TontineHomePage> {
       key: _scaffoldState,
       bottomNavigationBar: _myBottomNav(),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 144, 144, 144),
+        backgroundColor: Color.fromARGB(255, 243, 255, 253),
         elevation: 5,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -51,7 +51,7 @@ class _TontineHomePageState extends State<TontineHomePage> {
             Spacer(),
             const SizedBox(width: 8.0),
             Text(
-              user != null ? "Hi, ${user?.email}" : "Hi, User",
+              user != null ? "Hi, ${user?.email}" : "Hi, ${user?.email};",
               style: TextStyle(fontSize: 20.0),
             ),
             Spacer(),

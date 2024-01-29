@@ -6,7 +6,7 @@ import 'package:tontineo_mobile_app/ui/auth/login/log_in.dart';
 import 'package:tontineo_mobile_app/ui/auth/register/sign_up.dart';
 
 import 'package:tontineo_mobile_app/ui/home/home/tontine_group_creation.dart';
-import 'package:tontineo_mobile_app/ui/home/home/tontines/created_tontines.dart';
+import 'package:tontineo_mobile_app/ui/home/home/tontines/dashboard_page.dart';
 
 import 'package:tontineo_mobile_app/ui/home/tontine_home_page.dart';
 import 'package:tontineo_mobile_app/ui/home/settings/tontine_settings_page.dart';
