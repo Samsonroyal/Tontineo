@@ -22,6 +22,7 @@ class AuthService {
           email: firebaseUser.email ?? '',
           displayName: firebaseUser.displayName ?? '',
           phone: '',
+          name: '',
         );
       }
     } on FirebaseAuthException catch (e) {
@@ -56,6 +57,7 @@ class AuthService {
           email: firebaseUser.email ?? '',
           displayName: firebaseUser.displayName ?? '',
           phone: '',
+          name: '',
         );
       }
     } on FirebaseAuthException catch (e) {
@@ -74,6 +76,7 @@ class AuthService {
           email: firebaseUser.email ?? '',
           displayName: firebaseUser.displayName ?? '',
           phone: '',
+          name: '',
         );
       }
     } on FirebaseAuthException catch (e) {
