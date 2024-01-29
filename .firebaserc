@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "tontineo",
+    "production": "tontineo"
+  },
+  "targets": {},
+  "etags": {}
+}
