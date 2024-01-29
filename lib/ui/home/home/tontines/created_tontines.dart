@@ -1,5 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:tontineo_mobile_app/ui/home/home/contributions/personal/group_name_display_screen.dart';
+import 'package:tontineo_mobile_app/ui/home/home/contributions/personal/make_contributions_page.dart';
+import 'package:tontineo_mobile_app/ui/home/home/contributions/tontine_contribution_page.dart';
+import 'package:tontineo_mobile_app/ui/home/home/invite_members_page.dart';
 
 final Stream<QuerySnapshot> tontineSnapshots =
     FirebaseFirestore.instance.collection('tontineCollections').snapshots();
@@ -17,7 +21,7 @@ class _DashboardPageState extends State<DashboardPage> with SingleTickerProvider
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
   }
 
   @override
@@ -32,83 +36,45 @@ class _DashboardPageState extends State<DashboardPage> with SingleTickerProvider
     return Scaffold(
       appBar: AppBar(
         title: const Text('Dashboard'),
-        bottom: TabBar(
-          controller: _tabController,
-          physics: ScrollPhysics(),
-          tabs: const <Widget>[
-            Tab(
-              icon: Icon(Icons.bookmark),
-              text: 'Tontines',
-            ),
-            Tab(
-              icon: Icon(Icons.group),
-              text: 'Members',
-            ),
-            Tab(
-              icon: Icon(Icons.money_rounded),
-              text: 'Contributions',
-            ),
-          ],
-        ),
+       
       ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
+              TabBar(
+          controller: _tabController,
+          physics: ScrollPhysics(),
+          tabs: const <Widget>[
+            Tab(
+              icon: Icon(Icons.contacts),
+              text: 'Invite Members',
+            ),
+            Tab(
+              icon: Icon(Icons.money_rounded),
+              text: 'Make Contributions',
+            ),
+            Tab(
+              icon: Icon(Icons.attach_money),
+              text: 'View Contributions',
+            ),
+            Tab(
+              icon: Icon(Icons.bookmark),
+              text: 'View Tontines',
+            ),
+          ],
+        ),
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
                   children: <Widget>[
-                    Center(
-                      child: Text("Tontines"),
-                    ),
-                    Center(
-                      child: Text("Members"),
-                    ),
-                    Center(
-                      child: Text("Contributions"),
-                    ),
+                    InviteMembersPage (),                    
+                    MakeContributionsPage(),
+                    RecordContributions(),
+                    GroupNameDisplayScreen(),
                   ],
                 ),
-              ),
-              SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6.0),
-                      ),
-                      padding: const EdgeInsets.all(8.0),
-                      minimumSize: const Size.fromHeight(70.0),
-                    ),
-                    child: Text(
-                      'Invite members',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      // TODO: Implement invite members functionality
-                    },
-                  ),
-                  OutlinedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6.0),
-                      ),
-                      padding: const EdgeInsets.all(8.0),
-                      minimumSize: const Size.fromHeight(70.0),
-                    ),
-                    child: Text('Notify members',
-                        style: TextStyle(color: Colors.green)),
-                    onPressed: () {
-                      // TODO: Implement notify members functionality
-                    },
-                  ),
-                ],
               ),
             ],
           ),
