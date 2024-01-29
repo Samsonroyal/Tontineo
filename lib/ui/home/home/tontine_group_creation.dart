@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class TontineGroupCreation extends StatefulWidget {
   const TontineGroupCreation({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class _TontineGroupCreationState extends State<TontineGroupCreation> {
   final _groupMembersController = TextEditingController();
   final _rulesController = TextEditingController();
   final _selectedOptions = <String>[];
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,15 +23,12 @@ class _TontineGroupCreationState extends State<TontineGroupCreation> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Image.asset('lib/assets/images/tontineo_logo.png',
-                width: 50, height: 50),
-            const Icon(Icons.group),
+            Text('Home'),
           ],
         ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-       
         child: Form(
           key: _formKey,
           child: Column(
@@ -42,7 +40,7 @@ class _TontineGroupCreationState extends State<TontineGroupCreation> {
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                 ),
-              ),             
+              ),
               const SizedBox(height: 20),
               // Column with TextFormFields
               TextFormField(
@@ -64,10 +62,10 @@ class _TontineGroupCreationState extends State<TontineGroupCreation> {
                 decoration: const InputDecoration(
                   labelText: 'Add Group Members',
                   border: OutlineInputBorder(),
-                ),                               
+                ),
               ),
               const SizedBox(height: 20),
-              
+
               FormField(
                 builder: (FormFieldState<dynamic> state) {
                   return Column(
@@ -81,7 +79,8 @@ class _TontineGroupCreationState extends State<TontineGroupCreation> {
                         ),
                       ),
                       CheckboxListTile(
-                        title: Text('Require Members to have Identification Documents(ID or Passport)'),
+                        title: Text(
+                            'Require Members to have Identification Documents(ID or Passport)'),
                         value: _selectedOptions.contains('Option 1'),
                         onChanged: (bool? value) {
                           setState(() {
@@ -94,7 +93,8 @@ class _TontineGroupCreationState extends State<TontineGroupCreation> {
                         },
                       ),
                       CheckboxListTile(
-                        title: Text('Require Members to share contact information'),
+                        title: Text(
+                            'Require Members to share contact information'),
                         value: _selectedOptions.contains('Option 2'),
                         onChanged: (bool? value) {
                           setState(() {
@@ -107,7 +107,8 @@ class _TontineGroupCreationState extends State<TontineGroupCreation> {
                         },
                       ),
                       CheckboxListTile(
-                        title: Text('Require Members to share device location '),
+                        title:
+                            Text('Require Members to share device location '),
                         value: _selectedOptions.contains('Option 3'),
                         onChanged: (bool? value) {
                           setState(() {
@@ -119,7 +120,7 @@ class _TontineGroupCreationState extends State<TontineGroupCreation> {
                           });
                         },
                       ),
-                      // Require Members to Agree to Terms & Conditions 
+                      // Require Members to Agree to Terms & Conditions
                     ],
                   );
                 },
@@ -141,49 +142,55 @@ class _TontineGroupCreationState extends State<TontineGroupCreation> {
               ),
               const SizedBox(height: 20),
               // Create Tontine Group button
+              
               ElevatedButton(
                 onPressed: () async {
-      if (_formKey.currentState!.validate()) {
-        _formKey.currentState!.save(); // Save form data
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save(); // Save form data
 
-        // Get form data
-        final groupName = _groupNameController.text;
-        final groupMembers = _groupMembersController.text;
-        final rules = _rulesController.text;
+                    // Get form data
+                    final groupName = _groupNameController.text;
+                    final groupMembers = _groupMembersController.text;
+                    final rules = _rulesController.text;
 
-        // Create a Map to store the data
-        final tontineGroupData = {
-          'groupName': groupName,
-          'groupMembers': groupMembers,
-          'rules': rules,
-        };
+                    // Create a Map to store the data
+                    final tontineGroupData = {
+                      'groupName': groupName,
+                      'groupMembers': groupMembers,
+                      'rules': rules,
+                    };
 
-        try {
-          await FirebaseFirestore.instance
-              .collection('tontines')
-              .add(tontineGroupData);
-          // Handle successful upload (e.g., show a success message)
-        } catch (e) {
-          // Handle unsuccessful upload (e.g., show a failure message)
-        }
-      } 
-    },
-
+                    try {
+                      await FirebaseFirestore.instance
+                          .collection('tontines')
+                          .add(tontineGroupData);
+                          
+                      // Handle successful upload (e.g., show a success message)
+                      Fluttertoast.showToast(
+                        msg: 'Group created Successfully',
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        backgroundColor: Colors.green,
+                        textColor: Colors.white,
+                      );
+                    } catch (e) {
+                      // Handle unsuccessful upload (e.g., show a failure message)
+                    }
+                  }
+                },
                 style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6.0),
-                      ),
-                      padding: const EdgeInsets.all(8.0),
-                      minimumSize: const Size.fromHeight(70.0),
-                    ),
+                  backgroundColor: Colors.green,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6.0),
+                  ),
+                  padding: const EdgeInsets.all(8.0),
+                  minimumSize: const Size.fromHeight(70.0),
+                ),
                 child: const Text(
                   'Create Tontine Group',
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-
-
             ],
           ),
         ),
