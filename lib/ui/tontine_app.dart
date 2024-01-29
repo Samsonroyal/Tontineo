@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:tontineo_mobile_app/data/model/user.dart';
 import 'package:tontineo_mobile_app/ui/home/home/invite_members_page.dart';
 import 'package:tontineo_mobile_app/ui/home/home/contributions/tontine_contribution_page.dart';
-import 'package:tontineo_mobile_app/ui/auth/authentication_page.dart';
 import 'package:tontineo_mobile_app/ui/auth/login/log_in.dart';
 import 'package:tontineo_mobile_app/ui/auth/register/sign_up.dart';
 
-import 'package:tontineo_mobile_app/ui/home/home/contributions/tontine_contribution_page.dart';
 import 'package:tontineo_mobile_app/ui/home/home/tontine_group_creation.dart';
+import 'package:tontineo_mobile_app/ui/home/home/tontines/created_tontines.dart';
 
 import 'package:tontineo_mobile_app/ui/home/tontine_home_page.dart';
 import 'package:tontineo_mobile_app/ui/home/settings/tontine_settings_page.dart';
@@ -26,7 +25,8 @@ class _TontineoAppState extends State<TontineoApp> {
   void initState() {
     super.initState();
     // Initialize the user here
-    user = UserModel(id: '', displayName: '', phone: '', email: ''
+    user = UserModel(id: '', displayName: '', phone: '', email: '',
+        name: ''
     
     );
   }
@@ -44,11 +44,12 @@ class _TontineoAppState extends State<TontineoApp> {
       routes: <String, WidgetBuilder>{
         '/signup': (context) => const SignupScreen(),
         '/login': (context) => const LoginScreen(),
+        '/dashboard': (context) => const DashboardPage(),        
         '/home': (context) => TontineHomePage(user: user),
         '/settings': (context) => const SettingsPage(),
         '/create-tontine': (context) => TontineGroupCreation(),
-        '/invite_members': (context) => InviteMembersPage(),
-        '/contributions': (context) => TontineContributions(),
+        '/invite-members': (context) => InviteMembersPage(),
+        '/contributions': (context) => RecordContributions(),
       },
     );
   }
