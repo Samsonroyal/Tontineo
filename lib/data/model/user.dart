@@ -7,6 +7,6 @@ class UserModel {
     required this.id,
     required this.email,
     required this.displayName,
-    required this.phone, required String name,
+    required this.phone
   });
 }
