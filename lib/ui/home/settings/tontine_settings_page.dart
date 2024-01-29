@@ -69,13 +69,13 @@ class SettingsPage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 16), // Add a SizedBox with height 16
+            const SizedBox(height: 16), 
             Card(
               child: ListTile(
-                leading: const Icon(Icons.exit_to_app), // Add a leave/exit icon
+                leading: const Icon(Icons.exit_to_app), 
                 title: const Text('Logout'),
                 onTap: () {
-                  Navigator.pushNamed(context, '/login'); // Redirect to "/login" route when clicked
+                  Navigator.pushNamed(context, '/login'); 
                 },
               ),
             ),
