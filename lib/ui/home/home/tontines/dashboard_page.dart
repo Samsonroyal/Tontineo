@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:tontineo_mobile_app/ui/home/home/contributions/group/record_contributions_page.dart';
 import 'package:tontineo_mobile_app/ui/home/home/contributions/personal/group_name_display_screen.dart';
 import 'package:tontineo_mobile_app/ui/home/home/contributions/personal/make_contributions_page.dart';
 import 'package:tontineo_mobile_app/ui/home/home/contributions/tontine_contribution_page.dart';
@@ -49,19 +50,19 @@ class _DashboardPageState extends State<DashboardPage> with SingleTickerProvider
           tabs: const <Widget>[
             Tab(
               icon: Icon(Icons.contacts),
-              text: 'Invite Members',
+              text: 'Invite',
             ),
             Tab(
               icon: Icon(Icons.money_rounded),
-              text: 'Make Contributions',
+              text: 'Send',
             ),
             Tab(
-              icon: Icon(Icons.attach_money),
-              text: 'View Contributions',
+              icon: Icon(Icons.energy_savings_leaf),
+              text: 'Record',
             ),
             Tab(
               icon: Icon(Icons.bookmark),
-              text: 'View Tontines',
+              text: 'Tontines',
             ),
           ],
         ),
@@ -71,8 +72,8 @@ class _DashboardPageState extends State<DashboardPage> with SingleTickerProvider
                   children: <Widget>[
                     InviteMembersPage (),                    
                     MakeContributionsPage(),
-                    RecordContributions(),
-                    GroupNameDisplayScreen(),
+                    RecordContribution(),
+                    GroupInformation(),
                   ],
                 ),
               ),
