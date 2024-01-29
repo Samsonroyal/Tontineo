@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:cherry_toast/cherry_toast.dart';
 
 class TontineGroupCreation extends StatefulWidget {
   const TontineGroupCreation({Key? key}) : super(key: key);
@@ -142,7 +142,7 @@ class _TontineGroupCreationState extends State<TontineGroupCreation> {
               ),
               const SizedBox(height: 20),
               // Create Tontine Group button
-              
+
               ElevatedButton(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
@@ -164,15 +164,19 @@ class _TontineGroupCreationState extends State<TontineGroupCreation> {
                       await FirebaseFirestore.instance
                           .collection('tontines')
                           .add(tontineGroupData);
-                          
+
                       // Handle successful upload (e.g., show a success message)
-                      Fluttertoast.showToast(
-                        msg: 'Group created Successfully',
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.BOTTOM,
-                        backgroundColor: Colors.green,
-                        textColor: Colors.white,
-                      );
+                      // ignore: use_build_context_synchronously
+                      CherryToast.info(
+                        title: const Text("Tontine Group Created Successfully!",
+                            style: TextStyle(color: Colors.black)),
+                        action: const Text("Go to Dashboard",
+                            style: TextStyle(color: Colors.black)),
+                        actionHandler: () {
+                          print("Action button pressed");
+                        },
+                      ).show(context);
+                      
                     } catch (e) {
                       // Handle unsuccessful upload (e.g., show a failure message)
                     }
