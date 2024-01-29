@@ -2,185 +2,116 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:tontineo_mobile_app/data/model/AdminModel.dart';
 import 'package:tontineo_mobile_app/data/model/user.dart';
+import 'package:tontineo_mobile_app/ui/home/home/contributions/tontine_contribution_page.dart';
 import 'package:tontineo_mobile_app/ui/home/home/tontine_group_creation.dart';
-import 'package:tontineo_mobile_app/ui/home/home/tontine_group_creation_page.dart';
+import 'package:tontineo_mobile_app/ui/home/home/tontines/created_tontines.dart';
+import 'package:tontineo_mobile_app/ui/home/settings/tontine_settings_page.dart';
 
 
 class TontineHomePage extends StatefulWidget {
   final UserModel user;
   const TontineHomePage({super.key, required this.user});
 
-   @override
+  @override
   _TontineHomePageState createState() => _TontineHomePageState();
 }
 
 class _TontineHomePageState extends State<TontineHomePage> {
+  int activeIndex = 0;
+  List<Widget> pages = [
+    const TontineGroupCreation(),
+    const DashboardPage(),    
+    RecordContributions(),
+    const SettingsPage(),
+  ];
+  final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(248, 243, 243, 1),
+      key: _scaffoldState,
+      
+      bottomNavigationBar: _myBottomNav(),
       appBar: AppBar(
-        title: const Row(
+        backgroundColor: Colors.white,
+        elevation: 5,
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircleAvatar(
               radius: 20.0,
-              backgroundImage: AssetImage("lib/assets/images/avatar.png"), 
+              backgroundImage: AssetImage("lib/assets/images/avatar.png"),
             ),
             Spacer(),
-            SizedBox(width: 8.0),
-            Text(
+            const SizedBox(width: 8.0),
+            const Text(
               "Hi",
               style: TextStyle(fontSize: 20.0),
             ),
             Spacer(),
-            Icon(Icons.notifications, color: Colors.green,),
-          ],
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              width: 315.458984375,
-              height: 156.80709838867188,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(11.06873607635498),
-                color: Colors.white,
-              ),
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    "You have no Tontine Group",
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 40.0,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const TontineGroupCreation(),
-                        ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: Color(0xff0da62f),
-                      padding: EdgeInsets.all(16.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6.0),
-                      ),
-                      minimumSize: Size(100, 46),
-                    ),
-                    child: Text(
-                      "Create Tontine",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 100.0),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  Image.asset(
-                    "lib/assets/images/group_image.png", 
-                    height: 180.0,
-                    width: double.infinity,
-                    fit: BoxFit.contain,
-                  ),
-                  SizedBox(height: 10.0),
-                  Text(
-                    "You have not created a group yet",
-                    style: TextStyle(fontSize: 16.0),
-                  ),
-                ],
-              ),
+            const Icon(
+              Icons.notifications,
+              color: Colors.green,
             ),
           ],
         ),
       ),
-
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'DASHBOARD',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.paypal),
-            label: 'CONTRIBUTIONS',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'SETTINGS',
-          ),
-        ],
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.green,
-        unselectedItemColor: Colors.grey,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        onTap: (index) {
-          switch (index) {
-            case 0:
-              Navigator.popAndPushNamed(context, '/home');
-              break;
-            case 1:
-              Navigator.popAndPushNamed(context, '/contributions');
-              break;
-            case 2:
-              Navigator.popAndPushNamed(context, '/settings');
-              break;
-          }
-        },
-      ),
+      body: pages[activeIndex],     
     );
   }
 
-Future<AdminModel?> getUser(String userId) async {
-  // Reference to the 'users' collection
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
-
-  // Get the document snapshot corresponding to the provided user ID
-  DocumentSnapshot documentSnapshot = await users.doc(userId).get();
-  print("userrr 2 ..... ${documentSnapshot}");
-  // Check if the document exists
-  if (documentSnapshot.exists) {
-    // Extract data from the document snapshot
-    Map<String, dynamic> data =
-        documentSnapshot.data() as Map<String, dynamic>;
-
-    // Create an AdminModel object from the data
-    AdminModel user = AdminModel(
-      name: data['name'],
-      email: data['email'],
-      uid: data['uid'],
-      phone: data['phone'],
-      selectedUserType: data['selectedUserType'],
+  Widget _myBottomNav() {
+    return BottomNavigationBar(
+      items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.credit_card), label: "Dashboard"),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.notifications), label: "Contributions"),
+        BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings")
+      ],
+      type: BottomNavigationBarType.fixed,
+      elevation: 7,
+      selectedItemColor: const Color.fromARGB(255, 33, 243, 61),
+      unselectedItemColor: const Color.fromARGB(255, 123, 118, 118),
+      showSelectedLabels: true,
+      showUnselectedLabels: true,
+      onTap: (index) {
+        setState(() {
+          activeIndex = index;
+        });
+      },
+      currentIndex: activeIndex,
     );
-    print("user ..... ${user}");
-    return user;
-  } else {
-    print('Document does not exist');
-    return null;
+  }
+
+  Future<AdminModel?> getUser(String userId) async {
+    // Reference to the 'users' collection
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+    // Get the document snapshot corresponding to the provided user ID
+    DocumentSnapshot documentSnapshot = await users.doc(userId).get();
+    debugPrint("userrr 2 ..... $documentSnapshot");
+    // Check if the document exists
+    if (documentSnapshot.exists) {
+      // Extract data from the document snapshot
+      Map<String, dynamic> data =
+          documentSnapshot.data() as Map<String, dynamic>;
+
+      // Create an AdminModel object from the data
+      AdminModel user = AdminModel(
+        name: data['name'],
+        email: data['email'],
+        uid: data['uid'],
+        phone: data['phone'],
+        selectedUserType: data['selectedUserType'],
+      );
+      debugPrint("user ..... $user");
+      return user;
+    } else {
+      debugPrint('Document does not exist');
+      return null;
+    }
   }
 }
-
-}
-
-
-  
-
