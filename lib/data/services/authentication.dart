@@ -22,7 +22,7 @@ class AuthService {
           email: firebaseUser.email ?? '',
           displayName: firebaseUser.displayName ?? '',
           phone: '',
-          name: '',
+          
         );
       }
     } on FirebaseAuthException catch (e) {
@@ -45,19 +45,21 @@ class AuthService {
     String password,
   ) async {
     try {
+      print('Signing in email: $email, password: $password');
       final UserCredential userCredential =
           await _firebaseAuth.signInWithEmailAndPassword(
         email: email.trim(),
         password: password.trim(),
       );
+      print('Signed in user: $userCredential');
       final User? firebaseUser = userCredential.user;
       if (firebaseUser != null) {
+        print ('User is not null $firebaseUser');
         return UserModel(
           id: firebaseUser.uid,
           email: firebaseUser.email ?? '',
           displayName: firebaseUser.displayName ?? '',
-          phone: '',
-          name: '',
+          phone: firebaseUser.phoneNumber ?? '',
         );
       }
     } on FirebaseAuthException catch (e) {
@@ -76,7 +78,6 @@ class AuthService {
           email: firebaseUser.email ?? '',
           displayName: firebaseUser.displayName ?? '',
           phone: '',
-          name: '',
         );
       }
     } on FirebaseAuthException catch (e) {
