@@ -20,13 +20,7 @@ class AuthenticationFlowScreen extends StatelessWidget {
           } else {
             final user = snapshot.data;
             print("user .... ${user}");
-            return TontineHomePage(
-              user: UserModel(
-                id: user?.uid,
-                email: user?.email,
-                displayName: user?.displayName,
-                phone: user?.phoneNumber, name: '',
-              ),
+            return TontineHomePage(              
             );
           }
         },

@@ -47,7 +47,7 @@ class AuthenticationBloc
       emit(AuthenticationLoadingState(isLoading: true));
       try {
         final UserModel? user =
-            await authService.signInUser(event.email, event.password);
+          await authService.signInUser(event.email, event.password);            
         if (user != null) {
           emit(AuthenticationSuccessState(user));
         } else {

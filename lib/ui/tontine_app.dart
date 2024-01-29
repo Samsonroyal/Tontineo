@@ -19,18 +19,8 @@ class TontineoApp extends StatefulWidget {
 }
 
 class _TontineoAppState extends State<TontineoApp> {
-  late UserModel user;
 
- @override
-  void initState() {
-    super.initState();
-    // Initialize the user here
-    user = UserModel(id: '', displayName: '', phone: '', email: '',
-        name: ''
-    
-    );
-  }
-
+ 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -45,7 +35,7 @@ class _TontineoAppState extends State<TontineoApp> {
         '/signup': (context) => const SignupScreen(),
         '/login': (context) => const LoginScreen(),
         '/dashboard': (context) => const DashboardPage(),        
-        '/home': (context) => TontineHomePage(user: user),
+        '/home': (context) => TontineHomePage(),
         '/settings': (context) => const SettingsPage(),
         '/create-tontine': (context) => TontineGroupCreation(),
         '/invite-members': (context) => InviteMembersPage(),
