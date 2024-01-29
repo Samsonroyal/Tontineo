@@ -90,7 +90,7 @@ class _RecordContributions extends State<RecordContributions> {
                 // Navigate to the RecordContribution screen
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => RecordContribution()),
+                  MaterialPageRoute(builder: (context) => RecordContributionsPage()),
                 );
               },
               style: ElevatedButton.styleFrom(

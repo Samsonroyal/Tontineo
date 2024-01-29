@@ -72,7 +72,7 @@ class _DashboardPageState extends State<DashboardPage> with SingleTickerProvider
                   children: <Widget>[
                     InviteMembersPage (),                    
                     MakeContributionsPage(),
-                    RecordContribution(),
+                    RecordContributionsPage(),
                     GroupInformation(),
                   ],
                 ),
