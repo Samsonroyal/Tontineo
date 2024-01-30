@@ -24,7 +24,7 @@ class _TontineoAppState extends State<TontineoApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      initialRoute: '/home',
+      initialRoute: '/login',
       routes: <String, WidgetBuilder>{
         '/signup': (context) => const SignupScreen(),
         '/login': (context) => const LoginScreen(),
