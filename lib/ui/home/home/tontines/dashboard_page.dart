@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:tontineo_mobile_app/ui/home/home/contributions/group/record_contributions_page.dart';
 import 'package:tontineo_mobile_app/ui/home/home/contributions/personal/group_name_display_screen.dart';
 import 'package:tontineo_mobile_app/ui/home/home/contributions/personal/make_contributions_page.dart';
-import 'package:tontineo_mobile_app/ui/home/home/contributions/tontine_contribution_page.dart';
 import 'package:tontineo_mobile_app/ui/home/home/invite_members_page.dart';
 
 final Stream<QuerySnapshot> tontineSnapshots =
