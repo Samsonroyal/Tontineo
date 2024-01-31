@@ -16,21 +16,24 @@
                     String? _groupNameController ;
                     String? _receivedFromController;
                     String? _recipientSignatureController;
+                    String? _dateController;
 
                     @override
                     Widget build(BuildContext context) {
-                      return Scaffold(
+                      return Scaffold(                        
                         appBar: AppBar(
-                          title: Text('Record Contributions'),
+                          title: const Text('Record Contributions'),
                         ),
                         body: SingleChildScrollView(
-                          padding: EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(16.0),
                           child: Form(
                             key: _formKey,
                             child: Column(
                               children: [
                                 // Date
+                              
                                 TextFormField(
+                                  initialValue: _dateController,
                                   decoration: InputDecoration(
                                     labelText: 'Date',
                                     border: OutlineInputBorder(
@@ -44,11 +47,17 @@
                                           firstDate: DateTime(2022),
                                           lastDate: DateTime.now(),
                                         );
+                                        
+                                        onChanged: (String? newValue) {
+                                    setState(() {
+                                      _dateController = newValue;
+                                    });
+                                  };
                                         setState(() {
-                                          _selectedDate = selectedDate?.toString();
+                                          _selectedDate = selectedDate.toString();
                                         });
                                       },
-                                      icon: Icon(Icons.calendar_today,
+                                      icon: const Icon(Icons.calendar_today,
                                           color: Color.fromARGB(131, 6, 170, 0)),
                                     ),
                                     hintText: 'Select a Date',
@@ -59,6 +68,7 @@
                                     }
                                     return null;
                                   },
+                                  
                                 ),
                                 const SizedBox(height: 20.0),
 
@@ -123,7 +133,7 @@
                                 // Record Contribution button
                                 ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                    primary: Colors.green,
+                                    primary: Colors.white,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(6.0),
                                     ),
@@ -156,7 +166,7 @@
                                       });
                                     }
                                   },
-                                  child: Text('Record Contribution'),
+                                  child: const Text('Record Contribution'),
                                 ),
                               ],
                             ),
