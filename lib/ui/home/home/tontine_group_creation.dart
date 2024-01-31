@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:cherry_toast/cherry_toast.dart';
 
@@ -29,173 +31,176 @@ class _TontineGroupCreationState extends State<TontineGroupCreation> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              const Text(
-                'Create a Tontine Group',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 20),
-              // Column with TextFormFields
-              TextFormField(
-                controller: _groupNameController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter a group name';
-                  }
-                  return null; // Indicates successful validation
-                },
-                decoration: const InputDecoration(
-                  labelText: 'Group Name',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                controller: _groupMembersController,
-                decoration: const InputDecoration(
-                  labelText: 'Add Group Members',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 20),
-
-              FormField(
-                builder: (FormFieldState<dynamic> state) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'Set Rules',
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      CheckboxListTile(
-                        title: Text(
-                            'Require Members to have Identification Documents(ID or Passport)'),
-                        value: _selectedOptions.contains('Option 1'),
-                        onChanged: (bool? value) {
-                          setState(() {
-                            if (value!) {
-                              _selectedOptions.add('Option 1');
-                            } else {
-                              _selectedOptions.remove('Option 1');
-                            }
-                          });
-                        },
-                      ),
-                      CheckboxListTile(
-                        title: Text(
-                            'Require Members to share contact information'),
-                        value: _selectedOptions.contains('Option 2'),
-                        onChanged: (bool? value) {
-                          setState(() {
-                            if (value!) {
-                              _selectedOptions.add('Option 2');
-                            } else {
-                              _selectedOptions.remove('Option 2');
-                            }
-                          });
-                        },
-                      ),
-                      CheckboxListTile(
-                        title:
-                            Text('Require Members to share device location '),
-                        value: _selectedOptions.contains('Option 3'),
-                        onChanged: (bool? value) {
-                          setState(() {
-                            if (value!) {
-                              _selectedOptions.add('Option 3');
-                            } else {
-                              _selectedOptions.remove('Option 3');
-                            }
-                          });
-                        },
-                      ),
-                      // Require Members to Agree to Terms & Conditions
-                    ],
-                  );
-                },
-                validator: (value) {
-                  if (_selectedOptions.isEmpty) {
-                    return 'Please select at least one option';
-                  }
-                  return null; // Indicates successful validation
-                },
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                controller: _rulesController,
-                decoration: const InputDecoration(
-                  labelText: 'Set Additional Rules',
-                  border: OutlineInputBorder(),
-                ),
-                maxLines: 3,
-              ),
-              const SizedBox(height: 20),
-              // Create Tontine Group button
-
-              ElevatedButton(
-                onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    _formKey.currentState!.save(); // Save form data
-
-                    // Get form data
-                    final groupName = _groupNameController.text;
-                    final groupMembers = _groupMembersController.text;
-                    final rules = _rulesController.text;
-
-                    // Create a Map to store the data
-                    final tontineGroupData = {
-                      'groupName': groupName,
-                      'groupMembers': groupMembers,
-                      'rules': rules,
-                    };
-
-                    try {
-                      await FirebaseFirestore.instance
-                          .collection('tontines')
-                          .add(tontineGroupData);
-
-                      // Handle successful upload (e.g., show a success message)
-                      // ignore: use_build_context_synchronously
-                      CherryToast.info(
-                        title: const Text("Tontine Group Created Successfully!",
-                            style: TextStyle(color: Colors.black)),
-                        action: const Text("Go to Dashboard",
-                            style: TextStyle(color: Colors.black)),
-                        actionHandler: () {
-                          print("Action button pressed");
-                        },
-                      ).show(context);
-                      
-                    } catch (e) {
-                      // Handle unsuccessful upload (e.g., show a failure message)
-                    }
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6.0),
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                const Text(
+                  'Create a Tontine Group',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
                   ),
-                  padding: const EdgeInsets.all(8.0),
-                  minimumSize: const Size.fromHeight(70.0),
                 ),
-                child: const Text(
-                  'Create Tontine Group',
-                  style: TextStyle(color: Colors.white),
+                const SizedBox(height: 20),
+                // Column with TextFormFields
+                TextFormField(
+                  controller: _groupNameController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter a group name';
+                    }
+                    return null; // Indicates successful validation
+                  },
+                  decoration: const InputDecoration(
+                    labelText: 'Group Name',
+                    border: OutlineInputBorder(),
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 20),
+                TextFormField(
+                  controller: _groupMembersController,
+                  decoration: const InputDecoration(
+                    labelText: 'Add Group Members',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+                FormField(
+                  builder: (FormFieldState<dynamic> state) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Set Rules',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        CheckboxListTile(
+                          title: Text(
+                              'Require Members to have Identification Documents(ID or Passport)'),
+                          value: _selectedOptions.contains('Option 1'),
+                          onChanged: (bool? value) {
+                            setState(() {
+                              if (value!) {
+                                _selectedOptions.add('Option 1');
+                              } else {
+                                _selectedOptions.remove('Option 1');
+                              }
+                            });
+                          },
+                        ),
+                        CheckboxListTile(
+                          title: Text(
+                              'Require Members to share contact information'),
+                          value: _selectedOptions.contains('Option 2'),
+                          onChanged: (bool? value) {
+                            setState(() {
+                              if (value!) {
+                                _selectedOptions.add('Option 2');
+                              } else {
+                                _selectedOptions.remove('Option 2');
+                              }
+                            });
+                          },
+                        ),
+                        CheckboxListTile(
+                          title:
+                              Text('Require Members to share device location '),
+                          value: _selectedOptions.contains('Option 3'),
+                          onChanged: (bool? value) {
+                            setState(() {
+                              if (value!) {
+                                _selectedOptions.add('Option 3');
+                              } else {
+                                _selectedOptions.remove('Option 3');
+                              }
+                            });
+                          },
+                        ),
+                        // Require Members to Agree to Terms & Conditions
+                      ],
+                    );
+                  },
+                  validator: (value) {
+                    if (_selectedOptions.isEmpty) {
+                      return 'Please select at least one option';
+                    }
+                    return null; // Indicates successful validation
+                  },
+                ),
+                const SizedBox(height: 20),
+                TextFormField(
+                  controller: _rulesController,
+                  decoration: const InputDecoration(
+                    labelText: 'Set Additional Rules',
+                    border: OutlineInputBorder(),
+                  ),
+                  maxLines: 3,
+                ),
+                const SizedBox(height: 20),
+                // Create Tontine Group button
+
+                ElevatedButton(
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save(); // Save form data
+
+                      // Get form data
+                      final groupName = _groupNameController.text;
+                      final groupMembers = _groupMembersController.text;
+                      final rules = _rulesController.text;
+
+                      // Create a Map to store the data
+                      final tontineGroupData = {
+                        'groupName': groupName,
+                        'groupMembers': groupMembers,
+                        'rules': rules,
+                        'groupOwner': FirebaseAuth.instance.currentUser!.uid,
+                      };
+
+                      try {
+                        await FirebaseFirestore.instance
+                            .collection('tontines')
+                            .add(tontineGroupData);
+
+                        // Handle successful upload (e.g., show a success message)
+                        // ignore: use_build_context_synchronously
+                        CherryToast.info(
+                          title: const Text("Tontine Group Created Successfully!",
+                              style: TextStyle(color: Colors.black)),
+                          action: const Text("Go to Dashboard",
+                              style: TextStyle(color: Colors.black)),
+                          actionHandler: () {
+                            print("Action button pressed");
+                          },
+                        ).show(context);
+                        
+                      } catch (e) {
+                        // Handle unsuccessful upload (e.g., show a failure message)
+                      }
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6.0),
+                    ),
+                    padding: const EdgeInsets.all(8.0),
+                    minimumSize: const Size.fromHeight(70.0),
+                  ),
+                  child: const Text(
+                    'Create Tontine Group',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
