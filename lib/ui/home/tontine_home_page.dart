@@ -44,9 +44,36 @@ class _TontineHomePageState extends State<TontineHomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            CircleAvatar(
-              radius: 20.0,
-              backgroundImage: AssetImage("lib/assets/images/avatar.png"),
+            FutureBuilder<User?>(
+              future: FirebaseAuth.instance.authStateChanges().first,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircleAvatar(
+                    radius: 20.0,
+                    backgroundImage: AssetImage("lib/assets/images/avatar.png"),
+                  );
+                } else if (snapshot.hasData) {
+                  User? user = snapshot.data;
+                  String? photoUrl = user?.photoURL;
+                  if (photoUrl != null) {
+                    return CircleAvatar(
+                      radius: 20.0,
+                      backgroundImage: NetworkImage(photoUrl),
+                    );
+                  } else {
+                    return const CircleAvatar(
+                      radius: 20.0,
+                      backgroundImage:
+                          AssetImage("lib/assets/images/avatar.png"),
+                    );
+                  }
+                } else {
+                  return const CircleAvatar(
+                    radius: 20.0,
+                    backgroundImage: AssetImage("lib/assets/images/avatar.png"),
+                  );
+                }
+              },
             ),
             Spacer(),
             const SizedBox(width: 8.0),
