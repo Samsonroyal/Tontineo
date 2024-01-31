@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -16,6 +17,12 @@ class GroupInformation extends StatefulWidget {
 class _GroupInformationState extends State<GroupInformation> {
   final Stream<QuerySnapshot> _groupStream =
       FirebaseFirestore.instance.collection('tontines').snapshots();
+      filterData() {
+    return FirebaseFirestore.instance
+        .collection('tontines')
+        .where('groupOwner', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .snapshots();
+        }
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +51,12 @@ class _GroupInformationState extends State<GroupInformation> {
                   child: ListView(
                     shrinkWrap: true,
                     children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                      Map<String, dynamic> data =
-                          document.data()! as Map<String, dynamic>;
+                      print("Hello there" + document.data().toString());
+                      var data =
+                          document.data()! as Map;
                       return ListTile(
-                        title: Text(data['group_name'] ?? 'Default Group Name'),
-                        subtitle: Text((data['group_members'] as List<dynamic>? ?? []).join(', ')),
+                        title: Text(data['groupName'] ?? 'Default Group Name'),
+                        subtitle: Text((data['groupMembers'] ?? '0')),
                       );
                     }).toList(),
                   ),
