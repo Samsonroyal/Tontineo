@@ -108,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       context: context,
                       builder: (context) {
                         return const AlertDialog(
-                          content: Text('error'),
+                          content: Text('Unable to Sign In, Check Your network connection'),
                         );
                       });
                 }
