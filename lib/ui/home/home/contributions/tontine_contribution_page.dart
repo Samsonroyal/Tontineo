@@ -25,8 +25,8 @@ class _RecordContributions extends State<RecordContributions> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -53,16 +53,13 @@ class _RecordContributions extends State<RecordContributions> {
                     const SizedBox(
                       height: 40.0,
                     ),
-                    
-
                     ElevatedButton(
                       onPressed: () {
                         // Navigate to the TontineGroupCreationPage screen
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  const TontineGroupCreation()),
+                              builder: (context) => const TontineGroupCreation()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
@@ -82,8 +79,6 @@ class _RecordContributions extends State<RecordContributions> {
                 ),
               ),
             ),
-            const SizedBox(height: 50.0),
-            
             const SizedBox(height: 80.0),
             ElevatedButton(
               onPressed: () {
@@ -112,8 +107,7 @@ class _RecordContributions extends State<RecordContributions> {
                 // Navigate to the RecordContribution screen
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => MakeContributionsPage()),
+                  MaterialPageRoute(builder: (context) => MakeContributionsPage()),
                 );
               },
               style: ElevatedButton.styleFrom(
